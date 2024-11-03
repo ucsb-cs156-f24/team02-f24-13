@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-f24/team02-f24-13
 owner: ucsb-cs156-f24
 repo_name: team02-f24-13
-pull_requests: [{"author":{"id":"MDQ6VXNlcjYxNjMyNjc4","is_bot":false,"login":"emiz39","name":"Emily Z"},"headRefName":"ez-UCSBDiningCommonsMenuItem-backend","number":61,"title":"set up backend API for CRUD operations","url":"https://github.com/ucsb-cs156-f24/team02-f24-13/pull/61"}]
+pull_requests: [{"author":{"id":"U_kgDOB3ED6g","is_bot":false,"login":"Anteater10","name":""},"headRefName":"AS-Articles-backend","number":62,"title":"As articles backend","url":"https://github.com/ucsb-cs156-f24/team02-f24-13/pull/62"},{"author":{"id":"MDQ6VXNlcjYxNjMyNjc4","is_bot":false,"login":"emiz39","name":"Emily Z"},"headRefName":"ez-UCSBDiningCommonsMenuItem-backend","number":61,"title":"set up backend API for CRUD operations","url":"https://github.com/ucsb-cs156-f24/team02-f24-13/pull/61"}]

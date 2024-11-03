@@ -10,13 +10,13 @@ const ucsbDiningCommonsMenuItemFixtures = {
         id: 1,
         diningCommonsCode: "ortega",
         name: "Chicken Caesar Salad",
-        station: "Entree0",
+        station: "Entree",
       },
       {
         id: 2,
         diningCommonsCode: "portola",
-        name: "Baked Pesto Pasta with Chicken",
-        station: "Entree Specials",
+        name: "Cream of Broccoli Soup (v)",
+        station: "Greens & Grains",
       },
       {
         id: 3,

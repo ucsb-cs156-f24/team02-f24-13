@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
  * REST controller for managing articles.
  */
 
-@Tag(name = "articles")
+@Tag(name = "Articles")
 @RequestMapping("/api/articles")
 @RestController
 @Slf4j

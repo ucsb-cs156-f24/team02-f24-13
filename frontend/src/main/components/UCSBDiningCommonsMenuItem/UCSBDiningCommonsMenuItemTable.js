@@ -9,7 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { hasRole } from "main/utils/currentUser";
 
-export default function UCSBDiningCommonsMenuItemTable({
+export default function UCSBDiningCommonsMenuItem({
   diningCommonsMenuItem,
   currentUser,
 }) {
@@ -36,7 +36,7 @@ export default function UCSBDiningCommonsMenuItemTable({
   const columns = [
     {
       Header: "id",
-      accessor: "id", // accessor is the "key" in the data
+      accessor: "id",
     },
     {
       Header: "Dining Commons Code",

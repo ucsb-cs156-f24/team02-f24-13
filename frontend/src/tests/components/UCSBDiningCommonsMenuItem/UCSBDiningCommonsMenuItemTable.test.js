@@ -154,6 +154,7 @@ describe("UserTable tests", () => {
   test("Delete button calls delete callback", async () => {
     // arrange
     const currentUser = currentUserFixtures.adminUser;
+    jest.spyOn(console, "log"); // Mock console.log
 
     const axiosMock = new AxiosMockAdapter(axios);
     axiosMock
@@ -194,5 +195,11 @@ describe("UserTable tests", () => {
 
     await waitFor(() => expect(axiosMock.history.delete.length).toBe(1));
     expect(axiosMock.history.delete[0].params).toEqual({ id: 1 });
+
+    expect(axiosMock.history.delete[0].params.id).toBe(1);
+
+    expect(console.log).toHaveBeenCalledWith({
+      message: "DiningCommonsMenuItem deleted",
+    });
   });
 });

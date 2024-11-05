@@ -77,7 +77,7 @@ describe("UCSBDiningCommonsMenuItem tests", () => {
 
     fireEvent.click(submitButton);
 
-    await screen.findByText(/Dining Commons Code is required./);
+    await screen.findByText(/DiningCommonsCode is required./);
     expect(screen.getByText(/Name is required./)).toBeInTheDocument();
     expect(screen.getByText(/Station is required./)).toBeInTheDocument();
   });

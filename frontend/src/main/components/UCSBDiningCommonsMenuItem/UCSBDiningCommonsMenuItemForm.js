@@ -21,12 +21,12 @@ function UCSBDiningCommonsMenuItemForm({
   // Note that even this complex regex may still need some tweaks
 
   // Stryker disable Regex
-  //   const isodate_regex =
-  //     /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
-  //   // Stryker restore Regex
+//   const isodate_regex =
+//     /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
+//   // Stryker restore Regex
 
   // Stryker disable next-line all
-  //   const yyyyq_regex = /((19)|(20))\d{2}[1-4]/i; // Accepts from 1900-2099 followed by 1-4.  Close enough.
+//   const yyyyq_regex = /((19)|(20))\d{2}[1-4]/i; // Accepts from 1900-2099 followed by 1-4.  Close enough.
 
   return (
     <Form onSubmit={handleSubmit(submitAction)}>
@@ -49,16 +49,14 @@ function UCSBDiningCommonsMenuItemForm({
 
         <Col>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="diningCommonsCode">
-              Dining Commons Code
-            </Form.Label>
+            <Form.Label htmlFor="diningCommonsCode">Dining Commons Code</Form.Label>
             <Form.Control
               data-testid="UCSBDiningCommonsMenuItemForm-diningCommonsCode"
               id="diningCommonsCode"
               type="text"
               isInvalid={Boolean(errors.diningCommonsCode)}
               {...register("diningCommonsCode", {
-                required: "DiningCommonsCode is required.",
+                required: "Dining Commons Code is required.",
               })}
             />
             <Form.Control.Feedback type="invalid">
@@ -107,10 +105,7 @@ function UCSBDiningCommonsMenuItemForm({
 
       <Row>
         <Col>
-          <Button
-            type="submit"
-            data-testid="UCSBDiningCommonsMenuItemForm-submit"
-          >
+          <Button type="submit" data-testid="UCSBDiningCommonsMenuItemForm-submit">
             {buttonLabel}
           </Button>
           <Button

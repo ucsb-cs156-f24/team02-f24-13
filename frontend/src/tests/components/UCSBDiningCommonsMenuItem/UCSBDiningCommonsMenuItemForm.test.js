@@ -10,7 +10,7 @@ jest.mock("react-router-dom", () => ({
   useNavigate: () => mockedNavigate,
 }));
 
-describe("UCSBDiningCommonsMenuItemForm tests", () => {
+describe("UCSBDiningCommonsMenuItem tests", () => {
   test("renders correctly", async () => {
     render(
       <Router>
@@ -77,7 +77,7 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
 
     fireEvent.click(submitButton);
 
-    await screen.findByText(/DiningCommonsCode is required./);
+    await screen.findByText(/Dining Commons Code is required./);
     expect(screen.getByText(/Name is required./)).toBeInTheDocument();
     expect(screen.getByText(/Station is required./)).toBeInTheDocument();
   });

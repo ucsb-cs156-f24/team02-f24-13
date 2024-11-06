@@ -75,6 +75,17 @@ describe("RecommendationRequestForm tests", () => {
     fireEvent.click(submitButton);
 
     await screen.findByText(/Please enter a valid email address./);
+    expect(
+      screen.getByText(/Please enter a valid email address./),
+    ).toBeInTheDocument();
+
+    fireEvent.change(professorEmailField, { target: { value: "e@gmail.com" } });
+    fireEvent.change(requesterEmailField, { target: { value: "bad-input" } });
+    fireEvent.click(submitButton);
+    await screen.findByText(/Please enter a valid email address./);
+    expect(
+      screen.getByText(/Please enter a valid email address./),
+    ).toBeInTheDocument();
   });
 
   test("Correct Error messsages on missing input", async () => {

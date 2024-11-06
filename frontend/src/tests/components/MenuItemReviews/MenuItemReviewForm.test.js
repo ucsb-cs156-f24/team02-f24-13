@@ -24,7 +24,7 @@ describe("menuItemReviewForm tests", () => {
   test("renders correctly when passing in a MenuItemReview", async () => {
     render(
       <Router>
-        <UCSBDateForm initialContents={menuItemReviewFixtures.oneDate} />
+        <MenuItemReviewForm initialContents={menuItemReviewFixtures.oneDate} />
       </Router>,
     );
     await screen.findByTestId(/MenuItemReviewForm-id/);

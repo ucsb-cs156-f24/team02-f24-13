@@ -102,7 +102,7 @@ describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
 
     fireEvent.change(diningCommonsCodeField, { target: { value: "ortega" } });
     fireEvent.change(nameField, { target: { value: "Chicken Caesar Salad" } });
-    fireEvent.change(station, {
+    fireEvent.change(stationField, {
       target: { value: "Entree" },
     });
 

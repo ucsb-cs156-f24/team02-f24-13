@@ -26,15 +26,15 @@ function MenuItemReviewForm({
   // Stryker restore Regex
 
   // Stryker disable next-line all
-  
+
   // write regex for integers
   const integer_regex = /^[1-9]\d*$/i;
 
   // regex for stars
-  const stars_regex= /^[0-5]$/i;
+  const stars_regex = /^[0-5]$/i;
 
   // regex for email
-  const email_regex= /^[A-Za-z0-9+_~!#%$&'-]+@[a-z]+.[a-z]+$/i;
+  const email_regex = /^[A-Za-z0-9+_~!#%$&'-]+@[a-z]+.[a-z]+$/i;
 
   return (
     <Form onSubmit={handleSubmit(submitAction)}>
@@ -90,7 +90,7 @@ function MenuItemReviewForm({
             />
             <Form.Control.Feedback type="invalid">
               {errors.reviewerEmail && "Reviewer email is required"}
-              {errors.reviewerEmail?.type === "pattern" && 
+              {errors.reviewerEmail?.type === "pattern" &&
                 "Must input valid reviewer email"}
             </Form.Control.Feedback>
           </Form.Group>
@@ -133,13 +133,13 @@ function MenuItemReviewForm({
             />
             <Form.Control.Feedback type="invalid">
               {errors.dateReviewed && "DateReviewed is required"}
-              {errors.dateReviewed?.type === "pattern" && 
+              {errors.dateReviewed?.type === "pattern" &&
                 "dateReviewed must be in ISO format"}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
       </Row>
-      
+
       <Row>
         <Col>
           <Form.Group className="mb-3">

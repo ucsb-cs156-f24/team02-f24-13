@@ -4,7 +4,9 @@ import { Navigate } from "react-router-dom";
 import { useBackendMutation } from "main/utils/useBackend";
 import { toast } from "react-toastify";
 
-export default function UCSBDiningCommonsMenuItemCreatePage({ storybook = false }) {
+export default function UCSBDiningCommonsMenuItemCreatePage({
+  storybook = false,
+}) {
   const objectToAxiosParams = (UCSBDiningCommonsMenuItem) => ({
     url: "/api/ucsbdiningcommonsmenuitem/post",
     method: "POST",
@@ -16,7 +18,9 @@ export default function UCSBDiningCommonsMenuItemCreatePage({ storybook = false 
   });
 
   const onSuccess = (UCSBDiningCommonsMenuItem) => {
-    toast(`New UCSBDiningCommonsMenuItem Created - id: ${UCSBDiningCommonsMenuItem.id} name: ${UCSBDiningCommonsMenuItem.name}`);
+    toast(
+      `New UCSBDiningCommonsMenuItem Created - id: ${UCSBDiningCommonsMenuItem.id} name: ${UCSBDiningCommonsMenuItem.name}`,
+    );
   };
 
   const mutation = useBackendMutation(

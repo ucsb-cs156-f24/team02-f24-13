@@ -30,10 +30,6 @@ function UCSBOrganizationForm({
           isInvalid={Boolean(errors.orgCode)}
           {...register("orgCode", {
             required: "Org Code is required.",
-            maxLength: {
-              value: 30,
-              message: "Max length 30 characters",
-            },
           })}
         />
         <Form.Control.Feedback type="invalid">
@@ -82,6 +78,7 @@ function UCSBOrganizationForm({
           isInvalid={Boolean(errors.inactive)}
           {...register("inactive")}
         />
+      </Form.Group>
 
       <Button type="submit" data-testid={testIdPrefix + "-submit"}>
         {buttonLabel}

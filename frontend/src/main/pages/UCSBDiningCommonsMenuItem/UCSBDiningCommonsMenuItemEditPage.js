@@ -36,7 +36,7 @@ export default function UCSBDiningCommonsMenuItemEditPage({
     data: {
       diningCommonsCode: diningCommonsMenuItem.diningCommonsCode,
       name: diningCommonsMenuItem.name,
-      station: diningCommonsMenuItem.submitAction,
+      station: diningCommonsMenuItem.station,
     },
   });
 

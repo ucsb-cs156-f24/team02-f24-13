@@ -206,6 +206,7 @@ describe("UCSBDiningCommonsMenuItemEditPage tests", () => {
         JSON.stringify({
           diningCommonsCode: "carillo",
           name: "Fried Chicken",
+          station: "Entree Special",
         }),
       ); // posted object
     });

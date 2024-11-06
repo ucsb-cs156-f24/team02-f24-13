@@ -38,7 +38,7 @@ ThreeArticlesAdminUser.parameters = {
     rest.delete("/api/articles/:id", (req, res, ctx) => {
       return res(
         ctx.json({ message: "Article deleted successfully!" }),
-        ctx.status(200)
+        ctx.status(200),
       );
     }),
   ],

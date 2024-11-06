@@ -75,7 +75,7 @@ function MenuItemReviewForm({
         </Col>
         <Col>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="reviewerEmail">Reviewer email</Form.Label>
+            <Form.Label htmlFor="reviewerEmail">Reviewer Email</Form.Label>
             <Form.Control
               data-testid="MenuItemReviewForm-reviewerEmail"
               id="reviewerEmail"

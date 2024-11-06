@@ -10,7 +10,7 @@ jest.mock("react-router-dom", () => ({
   useNavigate: () => mockedNavigate,
 }));
 
-describe("UCSBDiningCommonsMenuItemForm tests", () => {
+describe("UCSBDiningCommonsMenuItem tests", () => {
   test("renders correctly", async () => {
     render(
       <Router>

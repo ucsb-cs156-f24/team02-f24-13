@@ -17,7 +17,7 @@ describe("ArticlesForm tests", () => {
     render(
       <Router>
         <ArticlesForm />
-      </Router>
+      </Router>,
     );
     await screen.findByText(/Title/);
     await screen.findByText(/Create/);
@@ -27,25 +27,25 @@ describe("ArticlesForm tests", () => {
     render(
       <Router>
         <ArticlesForm initialContents={articlesFixtures.oneArticle} />
-      </Router>
+      </Router>,
     );
     await screen.findByTestId("ArticlesForm-id");
     expect(screen.getByText(/Id/)).toBeInTheDocument();
     expect(screen.getByTestId("ArticlesForm-id")).toHaveValue("1");
     expect(screen.getByTestId("ArticlesForm-title")).toHaveValue(
-      "Andys Article"
+      "Andys Article",
     );
     expect(screen.getByTestId("ArticlesForm-url")).toHaveValue(
-      "https://example.com"
+      "https://example.com",
     );
     expect(screen.getByTestId("ArticlesForm-explanation")).toHaveValue(
-      "Article Number 1"
+      "Article Number 1",
     );
     expect(screen.getByTestId("ArticlesForm-email")).toHaveValue(
-      "author@example.com"
+      "author@example.com",
     );
     expect(screen.getByTestId("ArticlesForm-dateAdded")).toHaveValue(
-      "2022-01-01T12:00"
+      "2022-01-01T12:00",
     );
   });
 
@@ -53,7 +53,7 @@ describe("ArticlesForm tests", () => {
     render(
       <Router>
         <ArticlesForm />
-      </Router>
+      </Router>,
     );
     await screen.findByTestId("ArticlesForm-title");
 
@@ -82,7 +82,7 @@ describe("ArticlesForm tests", () => {
     render(
       <Router>
         <ArticlesForm dateInputType="text" />
-      </Router>
+      </Router>,
     );
     await screen.findByTestId("ArticlesForm-title");
 
@@ -108,10 +108,10 @@ describe("ArticlesForm tests", () => {
     await screen.findByText("Please enter a valid URL.");
     expect(screen.getByText("Please enter a valid URL.")).toBeInTheDocument();
     expect(
-      screen.getByText("Please enter a valid email address.")
+      screen.getByText("Please enter a valid email address."),
     ).toBeInTheDocument();
     expect(
-      screen.getByText("Please enter a valid date and time.")
+      screen.getByText("Please enter a valid date and time."),
     ).toBeInTheDocument();
   });
 
@@ -119,7 +119,7 @@ describe("ArticlesForm tests", () => {
     render(
       <Router>
         <ArticlesForm />
-      </Router>
+      </Router>,
     );
     const emailField = screen.getByTestId("ArticlesForm-email");
     const submitButton = screen.getByTestId("ArticlesForm-submit");
@@ -131,7 +131,7 @@ describe("ArticlesForm tests", () => {
 
     await screen.findByText("Please enter a valid email address.");
     expect(
-      screen.getByText("Please enter a valid email address.")
+      screen.getByText("Please enter a valid email address."),
     ).toBeInTheDocument();
   });
 
@@ -139,7 +139,7 @@ describe("ArticlesForm tests", () => {
     render(
       <Router>
         <ArticlesForm />
-      </Router>
+      </Router>,
     );
     const emailField = screen.getByTestId("ArticlesForm-email");
     const submitButton = screen.getByTestId("ArticlesForm-submit");
@@ -151,7 +151,7 @@ describe("ArticlesForm tests", () => {
 
     await screen.findByText("Please enter a valid email address.");
     expect(
-      screen.getByText("Please enter a valid email address.")
+      screen.getByText("Please enter a valid email address."),
     ).toBeInTheDocument();
   });
 
@@ -159,7 +159,7 @@ describe("ArticlesForm tests", () => {
     render(
       <Router>
         <ArticlesForm />
-      </Router>
+      </Router>,
     );
     const urlField = screen.getByTestId("ArticlesForm-url");
     const submitButton = screen.getByTestId("ArticlesForm-submit");
@@ -170,16 +170,14 @@ describe("ArticlesForm tests", () => {
     fireEvent.click(submitButton);
 
     await screen.findByText("Please enter a valid URL.");
-    expect(
-      screen.getByText("Please enter a valid URL.")
-    ).toBeInTheDocument();
+    expect(screen.getByText("Please enter a valid URL.")).toBeInTheDocument();
   });
 
   test("Shows error for URLs with extra characters after valid URL", async () => {
     render(
       <Router>
         <ArticlesForm />
-      </Router>
+      </Router>,
     );
     const urlField = screen.getByTestId("ArticlesForm-url");
     const submitButton = screen.getByTestId("ArticlesForm-submit");
@@ -190,9 +188,7 @@ describe("ArticlesForm tests", () => {
     fireEvent.click(submitButton);
 
     await screen.findByText("Please enter a valid URL.");
-    expect(
-      screen.getByText("Please enter a valid URL.")
-    ).toBeInTheDocument();
+    expect(screen.getByText("Please enter a valid URL.")).toBeInTheDocument();
   });
 
   test("Accepts URLs with http protocol", async () => {
@@ -200,7 +196,7 @@ describe("ArticlesForm tests", () => {
     render(
       <Router>
         <ArticlesForm submitAction={mockSubmitAction} />
-      </Router>
+      </Router>,
     );
     const titleField = screen.getByTestId("ArticlesForm-title");
     const urlField = screen.getByTestId("ArticlesForm-url");
@@ -222,14 +218,16 @@ describe("ArticlesForm tests", () => {
     fireEvent.click(submitButton);
 
     await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
-    expect(screen.queryByText("Please enter a valid URL.")).not.toBeInTheDocument();
+    expect(
+      screen.queryByText("Please enter a valid URL."),
+    ).not.toBeInTheDocument();
   });
 
   test("dateAdded input has type datetime-local by default", async () => {
     render(
       <Router>
         <ArticlesForm />
-      </Router>
+      </Router>,
     );
     const dateAddedField = screen.getByTestId("ArticlesForm-dateAdded");
     expect(dateAddedField).toHaveAttribute("type", "datetime-local");
@@ -239,7 +237,7 @@ describe("ArticlesForm tests", () => {
     render(
       <Router>
         <ArticlesForm dateInputType="text" />
-      </Router>
+      </Router>,
     );
     await screen.findByTestId("ArticlesForm-dateAdded");
 
@@ -252,7 +250,7 @@ describe("ArticlesForm tests", () => {
 
     await screen.findByText("Please enter a valid date and time.");
     expect(
-      screen.getByText("Please enter a valid date and time.")
+      screen.getByText("Please enter a valid date and time."),
     ).toBeInTheDocument();
   });
 
@@ -262,7 +260,7 @@ describe("ArticlesForm tests", () => {
     render(
       <Router>
         <ArticlesForm submitAction={mockSubmitAction} />
-      </Router>
+      </Router>,
     );
     await screen.findByTestId("ArticlesForm-title");
 
@@ -289,20 +287,20 @@ describe("ArticlesForm tests", () => {
     expect(screen.queryByText(/Title is required./)).not.toBeInTheDocument();
     expect(screen.queryByText(/URL is required./)).not.toBeInTheDocument();
     expect(
-      screen.queryByText(/Explanation is required./)
+      screen.queryByText(/Explanation is required./),
     ).not.toBeInTheDocument();
     expect(screen.queryByText(/Email is required./)).not.toBeInTheDocument();
     expect(
-      screen.queryByText(/Date Added is required./)
+      screen.queryByText(/Date Added is required./),
     ).not.toBeInTheDocument();
     expect(
-      screen.queryByText(/Please enter a valid URL./)
+      screen.queryByText(/Please enter a valid URL./),
     ).not.toBeInTheDocument();
     expect(
-      screen.queryByText(/Please enter a valid email address./)
+      screen.queryByText(/Please enter a valid email address./),
     ).not.toBeInTheDocument();
     expect(
-      screen.queryByText(/Please enter a valid date and time./)
+      screen.queryByText(/Please enter a valid date and time./),
     ).not.toBeInTheDocument();
   });
 
@@ -310,7 +308,7 @@ describe("ArticlesForm tests", () => {
     render(
       <Router>
         <ArticlesForm />
-      </Router>
+      </Router>,
     );
     await screen.findByTestId("ArticlesForm-cancel");
     const cancelButton = screen.getByTestId("ArticlesForm-cancel");

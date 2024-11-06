@@ -1,5 +1,5 @@
 import { render, waitFor, fireEvent, screen } from "@testing-library/react";
-import MenuItemReviewForm from "main/components/MenuItemReview/MenuItemReviewForm";
+import MenuItemReviewForm from "main/components/MenuItemReviews/MenuItemReviewForm";
 import { menuItemReviewFixtures } from "fixtures/menuItemReviewFixtures";
 import { BrowserRouter as Router } from "react-router-dom";
 
@@ -24,7 +24,7 @@ describe("menuItemReviewForm tests", () => {
   test("renders correctly when passing in a MenuItemReview", async () => {
     render(
       <Router>
-        <MenuItemReviewForm initialContents={menuItemReviewFixtures.oneDate} />
+        <MenuItemReviewForm initialContents={menuItemReviewFixtures.oneMenuItemReview} />
       </Router>,
     );
     await screen.findByTestId(/MenuItemReviewForm-id/);
@@ -58,7 +58,7 @@ describe("menuItemReviewForm tests", () => {
     await screen.findByText(/Item ID must be an integer, e.g. 1 for item #1/);
     await screen.findByText(/Must input valid reviewer email/);
     await screen.findByText(/Must give a rating between 0 and 5 stars/);
-    await screen.findByText(/dateReviewed must be in ISO format/);
+    await screen.findByText(/DateReviewed is required/);
   });
 
   test("Correct Error messsages on missing input", async () => {

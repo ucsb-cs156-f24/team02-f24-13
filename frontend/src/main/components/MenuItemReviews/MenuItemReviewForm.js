@@ -23,9 +23,6 @@ function MenuItemReviewForm({
   // Stryker disable Regex
   const isodate_regex =
     /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
-  // Stryker restore Regex
-
-  // Stryker disable next-line all
 
   // write regex for integers
   const integer_regex = /^[1-9]\d*$/i;
@@ -35,6 +32,7 @@ function MenuItemReviewForm({
 
   // regex for email
   const email_regex = /^[A-Za-z0-9+_~!#%$&'-]+@[a-z]+.[a-z]+$/i;
+  // Stryker restore Regex
 
   return (
     <Form onSubmit={handleSubmit(submitAction)}>
@@ -133,8 +131,6 @@ function MenuItemReviewForm({
             />
             <Form.Control.Feedback type="invalid">
               {errors.dateReviewed && "DateReviewed is required"}
-              {errors.dateReviewed?.type === "pattern" &&
-                "dateReviewed must be in ISO format"}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
@@ -168,7 +164,7 @@ function MenuItemReviewForm({
           <Button
             variant="Secondary"
             onClick={() => navigate(-1)}
-            data-testid="MenuItemReview-cancel"
+            data-testid="MenuItemReviewForm-cancel"
           >
             Cancel
           </Button>

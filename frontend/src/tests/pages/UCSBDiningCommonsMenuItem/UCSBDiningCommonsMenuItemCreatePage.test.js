@@ -8,7 +8,7 @@ import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 
-describe("PlaceholderCreatePage tests", () => {
+describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
   const axiosMock = new AxiosMockAdapter(axios);
 
   const setupUserOnly = () => {
@@ -32,7 +32,7 @@ describe("PlaceholderCreatePage tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <PlaceholderCreatePage />
+          <UCSBDiningCommonsMenuItemCreatePage />
         </MemoryRouter>
       </QueryClientProvider>,
     );

@@ -39,4 +39,4 @@ const helpRequestFixtures = {
   ],
 };
 
-export { helpRequestFixtures };
+export {helpRequestFixtures};

@@ -26,12 +26,14 @@ function MenuItemReviewForm({
   // Stryker restore Regex
 
   // Stryker disable next-line all
-  const yyyyq_regex = /((19)|(20))\d{2}[1-4]/i; // Accepts from 1900-2099 followed by 1-4.  Close enough.
+  
   // write regex for integers
   const integer_regex = /^[1-9]\d*$/i;
 
+  // regex for stars
   const stars_regex= /^[0-5]$/i;
 
+  // regex for email
   const email_regex= /^[A-Za-z0-9+_~!#%$&'-]+@[a-z]+.[a-z]+$/i;
 
   return (
@@ -106,7 +108,7 @@ function MenuItemReviewForm({
               isInvalid={Boolean(errors.stars)}
               {...register("stars", {
                 required: true,
-                pattern: stars_regex
+                pattern: stars_regex,
               })}
             />
             <Form.Control.Feedback type="invalid">

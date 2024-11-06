@@ -1,5 +1,5 @@
 import { render, waitFor, fireEvent, screen } from "@testing-library/react";
-import MenuItemReviewForm from "main/components/MenuItemREview/MenuItemReviewForm";
+import MenuItemReviewForm from "main/components/MenuItemReview/MenuItemReviewForm";
 import { menuItemReviewFixtures } from "fixtures/menuItemReviewFixtures";
 import { BrowserRouter as Router } from "react-router-dom";
 
@@ -40,9 +40,13 @@ describe("menuItemReviewForm tests", () => {
     );
     await screen.findByTestId("MenuItemReviewForm-itemId");
     const itemIdField = screen.getByTestId("MenuItemReviewForm-itemId");
-    const reviewerEmailField = screen.getByTestId("MenuItemReviewForm-reviewerEmail");
+    const reviewerEmailField = screen.getByTestId(
+      "MenuItemReviewForm-reviewerEmail",
+    );
     const starsField = screen.getByTestId("MenuItemReviewForm-stars");
-    const dateReviewedField = screen.getByTestId("MenuItemReviewForm-dateReviewed");
+    const dateReviewedField = screen.getByTestId(
+      "MenuItemReviewForm-dateReviewed",
+    );
     const submitButton = screen.getByTestId("MenuItemReviewForm-submit");
 
     fireEvent.change(itemIdField, { target: { value: "bad-input" } });
@@ -87,19 +91,26 @@ describe("menuItemReviewForm tests", () => {
 
     const itemIdField = screen.getByTestId("MenuItemReviewForm-itemId");
     const starsField = screen.getByTestId("MenuItemReviewForm-stars");
-    const dateReviewedField = screen.getByTestId("MenuItemReviewForm-dateReviewed");
-    const reviewerEmailField = screen.getByTestId("MenuItemReviewForm-reviewerEmail");
+    const dateReviewedField = screen.getByTestId(
+      "MenuItemReviewForm-dateReviewed",
+    );
+    const reviewerEmailField = screen.getByTestId(
+      "MenuItemReviewForm-reviewerEmail",
+    );
     const commentsField = screen.getByTestId("MenuItemReviewForm-comments");
     const submitButton = screen.getByTestId("MenuItemReviewForm-submit");
-
 
     fireEvent.change(itemIdField, { target: { value: "9" } });
     fireEvent.change(starsField, { target: { value: "2" } });
     fireEvent.change(dateReviewedField, {
       target: { value: "2022-01-02T12:00:00" },
     });
-    fireEvent.change(reviewerEmailField, { target: { value: "google@gmail.com" } });
-    fireEvent.change(commentsField, { target: { value: "kinda slimy on the inside" } });
+    fireEvent.change(reviewerEmailField, {
+      target: { value: "google@gmail.com" },
+    });
+    fireEvent.change(commentsField, {
+      target: { value: "kinda slimy on the inside" },
+    });
     fireEvent.click(submitButton);
 
     await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());

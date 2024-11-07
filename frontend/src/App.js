@@ -11,6 +11,10 @@ import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
 import RestaurantCreatePage from "main/pages/Restaurants/RestaurantCreatePage";
 import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
 
+import PlaceholderIndexPage from "main/pages/Placeholder/PlaceholderIndexPage";
+import PlaceholderCreatePage from "main/pages/Placeholder/PlaceholderCreatePage";
+import PlaceholderEditPage from "main/pages/Placeholder/PlaceholderEditPage";
+
 import RecommendationRequestIndexPage from "main/pages/RecommendationRequest/RecommendationRequestIndexPage";
 import RecommendationRequestCreatePage from "main/pages/RecommendationRequest/RecommendationRequestCreatePage";
 import RecommendationRequestEditPage from "main/pages/RecommendationRequest/RecommendationRequestEditPage";
@@ -70,6 +74,29 @@ function App() {
               exact
               path="/restaurants/create"
               element={<RestaurantCreatePage />}
+            />
+          </>
+        )}
+        {hasRole(currentUser, "ROLE_USER") && (
+          <>
+            <Route
+              exact
+              path="/placeholder"
+              element={<PlaceholderIndexPage />}
+            />
+          </>
+        )}
+        {hasRole(currentUser, "ROLE_ADMIN") && (
+          <>
+            <Route
+              exact
+              path="/placeholder/edit/:id"
+              element={<PlaceholderEditPage />}
+            />
+            <Route
+              exact
+              path="/placeholder/create"
+              element={<PlaceholderCreatePage />}
             />
           </>
         )}

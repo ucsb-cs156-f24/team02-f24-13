@@ -7,10 +7,10 @@ export default function MenuItemReviewIndexPage() {
       <div className="pt-2">
         <h1>Index page not yet implemented</h1>
         <p>
-          <a href="/placeholder/create">Create</a>
+          <a href="/menuitemreview/create">Create</a>
         </p>
         <p>
-          <a href="/placeholder/edit/1">Edit</a>
+          <a href="/menuitemreview/edit/1">Edit</a>
         </p>
       </div>
     </BasicLayout>

@@ -7,7 +7,6 @@ import { currentUserFixtures } from "fixtures/currentUserFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 import { toast } from "react-toastify";
-import { onDeleteSuccess } from "main/utils/ArticlesUtils";
 
 // Mocking react-router-dom's useNavigate
 const mockedNavigate = jest.fn();

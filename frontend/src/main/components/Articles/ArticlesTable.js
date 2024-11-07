@@ -3,7 +3,10 @@ import OurTable, { ButtonColumn } from "main/components/OurTable";
 import { useBackendMutation } from "main/utils/useBackend";
 import { useNavigate } from "react-router-dom";
 import { hasRole } from "main/utils/currentUser";
-import { cellToAxiosParamsDelete, onDeleteSuccess } from "main/utils/ArticlesUtils";
+import {
+  cellToAxiosParamsDelete,
+  onDeleteSuccess,
+} from "main/utils/ArticlesUtils";
 
 export default function ArticlesTable({ articles, currentUser }) {
   const navigate = useNavigate();
@@ -52,9 +55,11 @@ export default function ArticlesTable({ articles, currentUser }) {
   if (hasRole(currentUser, "ROLE_ADMIN")) {
     columns.push(
       ButtonColumn("Edit", "primary", editCallback, "ArticlesTable"),
-      ButtonColumn("Delete", "danger", deleteCallback, "ArticlesTable")
+      ButtonColumn("Delete", "danger", deleteCallback, "ArticlesTable"),
     );
   }
 
-  return <OurTable data={articles} columns={columns} testid={"ArticlesTable"} />;
+  return (
+    <OurTable data={articles} columns={columns} testid={"ArticlesTable"} />
+  );
 }

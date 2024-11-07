@@ -34,7 +34,7 @@ describe("ArticlesTable tests", () => {
             currentUser={currentUser}
           />
         </MemoryRouter>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     const expectedHeaders = [
@@ -69,10 +69,14 @@ describe("ArticlesTable tests", () => {
     });
 
     // Ensure Edit and Delete buttons are not present for ordinary users
-    const editButton = screen.queryByTestId(`${testId}-cell-row-0-col-Edit-button`);
+    const editButton = screen.queryByTestId(
+      `${testId}-cell-row-0-col-Edit-button`,
+    );
     expect(editButton).not.toBeInTheDocument();
 
-    const deleteButton = screen.queryByTestId(`${testId}-cell-row-0-col-Delete-button`);
+    const deleteButton = screen.queryByTestId(
+      `${testId}-cell-row-0-col-Delete-button`,
+    );
     expect(deleteButton).not.toBeInTheDocument();
   });
 
@@ -87,7 +91,7 @@ describe("ArticlesTable tests", () => {
             currentUser={currentUser}
           />
         </MemoryRouter>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     const expectedHeaders = [
@@ -124,11 +128,15 @@ describe("ArticlesTable tests", () => {
     });
 
     // Ensure Edit and Delete buttons are present for admin users
-    const editButton = screen.getByTestId(`${testId}-cell-row-0-col-Edit-button`);
+    const editButton = screen.getByTestId(
+      `${testId}-cell-row-0-col-Edit-button`,
+    );
     expect(editButton).toBeInTheDocument();
     expect(editButton).toHaveClass("btn-primary");
 
-    const deleteButton = screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`);
+    const deleteButton = screen.getByTestId(
+      `${testId}-cell-row-0-col-Delete-button`,
+    );
     expect(deleteButton).toBeInTheDocument();
     expect(deleteButton).toHaveClass("btn-danger");
   });
@@ -144,23 +152,31 @@ describe("ArticlesTable tests", () => {
             currentUser={currentUser}
           />
         </MemoryRouter>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     await waitFor(() => {
-      expect(screen.getByTestId(`ArticlesTable-cell-row-0-col-id`)).toHaveTextContent("1");
+      expect(
+        screen.getByTestId(`ArticlesTable-cell-row-0-col-id`),
+      ).toHaveTextContent("1");
     });
 
-    const editButton = screen.getByTestId(`ArticlesTable-cell-row-0-col-Edit-button`);
+    const editButton = screen.getByTestId(
+      `ArticlesTable-cell-row-0-col-Edit-button`,
+    );
     fireEvent.click(editButton);
 
-    await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith("/articles/edit/1"));
+    await waitFor(() =>
+      expect(mockedNavigate).toHaveBeenCalledWith("/articles/edit/1"),
+    );
   });
 
   test("Delete button calls delete callback", async () => {
     const currentUser = currentUserFixtures.adminUser;
     const axiosMock = new AxiosMockAdapter(axios);
-    axiosMock.onDelete("/api/articles").reply(200, { message: "Article deleted" });
+    axiosMock
+      .onDelete("/api/articles")
+      .reply(200, { message: "Article deleted" });
 
     render(
       <QueryClientProvider client={queryClient}>
@@ -170,14 +186,18 @@ describe("ArticlesTable tests", () => {
             currentUser={currentUser}
           />
         </MemoryRouter>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     await waitFor(() => {
-      expect(screen.getByTestId(`ArticlesTable-cell-row-0-col-id`)).toHaveTextContent("1");
+      expect(
+        screen.getByTestId(`ArticlesTable-cell-row-0-col-id`),
+      ).toHaveTextContent("1");
     });
 
-    const deleteButton = screen.getByTestId(`ArticlesTable-cell-row-0-col-Delete-button`);
+    const deleteButton = screen.getByTestId(
+      `ArticlesTable-cell-row-0-col-Delete-button`,
+    );
     fireEvent.click(deleteButton);
 
     await waitFor(() => expect(axiosMock.history.delete.length).toBe(1));

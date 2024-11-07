@@ -5,7 +5,6 @@ import UCSBOrganizationForm from "main/components/UCSBOrganization/UCSBOrganizat
 import { ucsbOrganizationFixtures } from "fixtures/ucsbOrganizationFixtures";
 
 import { QueryClient, QueryClientProvider } from "react-query";
-import UCSBOrganizationForm from "main/components/UCSBOrganization/UCSBOrganizationForm";
 
 const mockedNavigate = jest.fn();
 
@@ -17,7 +16,7 @@ jest.mock("react-router-dom", () => ({
 describe("UCSBOrganizationForm tests", () => {
   const queryClient = new QueryClient();
 
-  const expectedHeaders = ["Name", "Description"];
+  const expectedHeaders = ["Org Code", "Org Translation Short", "Org Translation"];
   const testId = "UCSBOrganizationForm";
 
   test("renders correctly with no initialContents", async () => {
@@ -35,13 +34,21 @@ describe("UCSBOrganizationForm tests", () => {
       const header = screen.getByText(headerText);
       expect(header).toBeInTheDocument();
     });
+
+    expect(screen.getByTestId(`${testId}-orgCode`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-orgTranslationShort`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-orgTranslation`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-inactive`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-submit`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-cancel`)).toBeInTheDocument();
+
   });
 
   test("renders correctly when passing in initialContents", async () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Router>
-          <UCSBOrganizationForm initialContents={ucsbOrganizationFixtures.oneRestaurant} />
+          <UCSBOrganizationForm initialContents={ucsbOrganizationFixtures.oneOrganization} />
         </Router>
       </QueryClientProvider>,
     );
@@ -53,8 +60,9 @@ describe("UCSBOrganizationForm tests", () => {
       expect(header).toBeInTheDocument();
     });
 
-    expect(await screen.findByTestId(`${testId}-id`)).toBeInTheDocument();
-    expect(screen.getByText(`Id`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-orgCode`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-orgTranslationShort`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-orgTranslation`)).toBeInTheDocument();
   });
 
   test("that navigate(-1) is called when Cancel is clicked", async () => {

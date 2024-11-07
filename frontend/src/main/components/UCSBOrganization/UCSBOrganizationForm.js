@@ -72,7 +72,7 @@ function UCSBOrganizationForm({
       <Form.Group className="mb-3">
         <Form.Label htmlFor="inactive">Inactive</Form.Label>
         <Form.Check
-          data-testid={testIdPrefix + "inactive"}
+          data-testid={testIdPrefix + "-inactive"}
           id="inactive"
           type="checkbox"
           isInvalid={Boolean(errors.inactive)}

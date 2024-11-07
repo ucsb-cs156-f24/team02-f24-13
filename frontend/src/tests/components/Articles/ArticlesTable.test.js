@@ -27,13 +27,30 @@ describe("ArticlesTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <ArticlesTable articles={articlesFixtures.threeArticles} currentUser={currentUser} />
+          <ArticlesTable
+            articles={articlesFixtures.threeArticles}
+            currentUser={currentUser}
+          />
         </MemoryRouter>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
-    const expectedHeaders = ["ID", "Title", "URL", "Explanation", "Email", "Date Added"];
-    const expectedFields = ["id", "title", "url", "explanation", "email", "dateAdded"];
+    const expectedHeaders = [
+      "ID",
+      "Title",
+      "URL",
+      "Explanation",
+      "Email",
+      "Date Added",
+    ];
+    const expectedFields = [
+      "id",
+      "title",
+      "url",
+      "explanation",
+      "email",
+      "dateAdded",
+    ];
     const testId = "ArticlesTable";
 
     expectedHeaders.forEach((headerText) => {
@@ -47,10 +64,14 @@ describe("ArticlesTable tests", () => {
       expect(cell).toHaveTextContent(articlesFixtures.threeArticles[0][field]);
     });
 
-    const editButton = screen.queryByTestId(`${testId}-cell-row-0-col-Edit-button`);
+    const editButton = screen.queryByTestId(
+      `${testId}-cell-row-0-col-Edit-button`,
+    );
     expect(editButton).not.toBeInTheDocument();
 
-    const deleteButton = screen.queryByTestId(`${testId}-cell-row-0-col-Delete-button`);
+    const deleteButton = screen.queryByTestId(
+      `${testId}-cell-row-0-col-Delete-button`,
+    );
     expect(deleteButton).not.toBeInTheDocument();
   });
 
@@ -60,13 +81,32 @@ describe("ArticlesTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <ArticlesTable articles={articlesFixtures.threeArticles} currentUser={currentUser} />
+          <ArticlesTable
+            articles={articlesFixtures.threeArticles}
+            currentUser={currentUser}
+          />
         </MemoryRouter>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
-    const expectedHeaders = ["ID", "Title", "URL", "Explanation", "Email", "Date Added", "Edit", "Delete"];
-    const expectedFields = ["id", "title", "url", "explanation", "email", "dateAdded"];
+    const expectedHeaders = [
+      "ID",
+      "Title",
+      "URL",
+      "Explanation",
+      "Email",
+      "Date Added",
+      "Edit",
+      "Delete",
+    ];
+    const expectedFields = [
+      "id",
+      "title",
+      "url",
+      "explanation",
+      "email",
+      "dateAdded",
+    ];
     const testId = "ArticlesTable";
 
     expectedHeaders.forEach((headerText) => {
@@ -80,11 +120,15 @@ describe("ArticlesTable tests", () => {
       expect(cell).toHaveTextContent(articlesFixtures.threeArticles[0][field]);
     });
 
-    const editButton = screen.getAllByTestId(/ArticlesTable-cell-row-\d+-col-Edit-button/)[0];
+    const editButton = screen.getAllByTestId(
+      /ArticlesTable-cell-row-\d+-col-Edit-button/,
+    )[0];
     expect(editButton).toBeInTheDocument();
     expect(editButton).toHaveClass("btn-primary");
 
-    const deleteButton = screen.getAllByTestId(/ArticlesTable-cell-row-\d+-col-Delete-button/)[0];
+    const deleteButton = screen.getAllByTestId(
+      /ArticlesTable-cell-row-\d+-col-Delete-button/,
+    )[0];
     expect(deleteButton).toBeInTheDocument();
     expect(deleteButton).toHaveClass("btn-danger");
   });
@@ -95,43 +139,61 @@ describe("ArticlesTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <ArticlesTable articles={articlesFixtures.threeArticles} currentUser={currentUser} />
+          <ArticlesTable
+            articles={articlesFixtures.threeArticles}
+            currentUser={currentUser}
+          />
         </MemoryRouter>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     await waitFor(() => {
-      expect(screen.getByTestId(`ArticlesTable-cell-row-0-col-id`)).toHaveTextContent("1");
+      expect(
+        screen.getByTestId(`ArticlesTable-cell-row-0-col-id`),
+      ).toHaveTextContent("1");
     });
 
-    const editButton = screen.getByTestId(`ArticlesTable-cell-row-0-col-Edit-button`);
+    const editButton = screen.getByTestId(
+      `ArticlesTable-cell-row-0-col-Edit-button`,
+    );
     fireEvent.click(editButton);
 
-    await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith("/articles/edit/1"));
+    await waitFor(() =>
+      expect(mockedNavigate).toHaveBeenCalledWith("/articles/edit/1"),
+    );
   });
 
   test("Delete button calls delete callback and invalidates queries", async () => {
     const currentUser = currentUserFixtures.adminUser;
 
     const axiosMock = new AxiosMockAdapter(axios);
-    axiosMock.onDelete("/api/articles").reply(200, { message: "Article deleted" });
+    axiosMock
+      .onDelete("/api/articles")
+      .reply(200, { message: "Article deleted" });
 
-    const invalidateQueriesSpy = jest.spyOn(queryClient, 'invalidateQueries');
+    const invalidateQueriesSpy = jest.spyOn(queryClient, "invalidateQueries");
 
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <ArticlesTable articles={articlesFixtures.threeArticles} currentUser={currentUser} />
+          <ArticlesTable
+            articles={articlesFixtures.threeArticles}
+            currentUser={currentUser}
+          />
         </MemoryRouter>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
-    const deleteButton = screen.getByTestId(`ArticlesTable-cell-row-0-col-Delete-button`);
+    const deleteButton = screen.getByTestId(
+      `ArticlesTable-cell-row-0-col-Delete-button`,
+    );
     fireEvent.click(deleteButton);
 
     await waitFor(() => expect(axiosMock.history.delete.length).toBe(1));
     expect(axiosMock.history.delete[0].params).toEqual({ id: 1 });
 
-    await waitFor(() => expect(invalidateQueriesSpy).toHaveBeenCalledWith(["/api/articles/all"]));
+    await waitFor(() =>
+      expect(invalidateQueriesSpy).toHaveBeenCalledWith(["/api/articles/all"]),
+    );
   });
 });

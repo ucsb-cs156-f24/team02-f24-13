@@ -1,14 +1,17 @@
 import React from "react";
 import OurTable, { ButtonColumn } from "main/components/OurTable";
 import { useBackendMutation } from "main/utils/useBackend";
-import { cellToAxiosParamsDelete, onDeleteSuccess } from "main/utils/ArticlesUtils";
+import {
+  cellToAxiosParamsDelete,
+  onDeleteSuccess,
+} from "main/utils/ArticlesUtils";
 import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "react-query"; // Import useQueryClient
 import { hasRole } from "main/utils/currentUser";
-import { useQueryClient } from "react-query";
 
 export default function ArticlesTable({ articles, currentUser }) {
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient(); // Define queryClient
 
   const editCallback = (cell) => {
     navigate(`/articles/edit/${cell.row.values.id}`);
@@ -17,8 +20,13 @@ export default function ArticlesTable({ articles, currentUser }) {
   // Stryker disable all : hard to test for query caching
   const deleteMutation = useBackendMutation(
     cellToAxiosParamsDelete,
-    { onSuccess: onDeleteSuccess },
-    ["/api/articles/all"]
+    {
+      onSuccess: () => {
+        onDeleteSuccess("Article deleted successfully");
+        queryClient.invalidateQueries(["/api/articles/all"]); // Use queryClient here
+      },
+    },
+    ["/api/articles/all"],
   );
   // Stryker restore all
 
@@ -57,9 +65,11 @@ export default function ArticlesTable({ articles, currentUser }) {
   if (hasRole(currentUser, "ROLE_ADMIN")) {
     columns.push(
       ButtonColumn("Edit", "primary", editCallback, "ArticlesTable"),
-      ButtonColumn("Delete", "danger", deleteCallback, "ArticlesTable")
+      ButtonColumn("Delete", "danger", deleteCallback, "ArticlesTable"),
     );
   }
 
-  return <OurTable data={articles} columns={columns} testid={"ArticlesTable"} />;
+  return (
+    <OurTable data={articles} columns={columns} testid={"ArticlesTable"} />
+  );
 }

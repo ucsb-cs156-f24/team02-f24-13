@@ -24,14 +24,8 @@ function MenuItemReviewForm({
   const isodate_regex =
     /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
 
-  // write regex for integers
-  const integer_regex = /^[1-9]\d*$/i;
-
-  // regex for stars
-  const stars_regex = /^[0-5]$/i;
-
   // regex for email
-  const email_regex = /^[A-Za-z0-9+_~!#%$&'-]+@[a-z]+.[a-z]+$/i;
+  const email_regex = /^[A-Za-z0-9+_~!#%$&'-]+@[a-z]+\.[a-z]+$/i;
   // Stryker restore Regex
 
   return (
@@ -55,21 +49,22 @@ function MenuItemReviewForm({
 
         <Col>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="itemID">Item ID</Form.Label>
+            <Form.Label htmlFor="itemId">Item ID</Form.Label>
             <Form.Control
               data-testid="MenuItemReviewForm-itemId"
               id="itemId"
-              type="text"
+              type="number"
               isInvalid={Boolean(errors.itemId)}
               {...register("itemId", {
                 required: true,
-                pattern: integer_regex,
+                valueAsNumber: true,
+                min: 1,
               })}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.itemId && "Item ID is required"}
-              {errors.itemId?.type === "pattern" &&
-                "Item ID must be an integer, e.g. 1 for item #1"}
+              {errors.itemId && "Item ID is required. "}
+              {errors.itemId?.type === "min" &&
+                "Item ID must be an integer greater than 1"}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
@@ -87,7 +82,7 @@ function MenuItemReviewForm({
               })}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.reviewerEmail && "Reviewer email is required"}
+              {errors.reviewerEmail && "Reviewer email is required. "}
               {errors.reviewerEmail?.type === "pattern" &&
                 "Must input valid reviewer email"}
             </Form.Control.Feedback>
@@ -102,16 +97,18 @@ function MenuItemReviewForm({
             <Form.Control
               data-testid="MenuItemReviewForm-stars"
               id="stars"
-              type="text"
+              type="number"
               isInvalid={Boolean(errors.stars)}
               {...register("stars", {
                 required: true,
-                pattern: stars_regex,
+                valueAsNumber: true,
+                min: 0,
+                max: 5,
               })}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.stars && "Stars is required"}
-              {errors.stars?.type === "pattern" &&
+              {errors.stars && "Stars is required. "}
+              {(errors.stars?.type === "min" || errors.stars?.type === "max") &&
                 "Must give a rating between 0 and 5 stars"}
             </Form.Control.Feedback>
           </Form.Group>
@@ -130,7 +127,7 @@ function MenuItemReviewForm({
               })}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.dateReviewed && "DateReviewed is required"}
+              {errors.dateReviewed && "DateReviewed is required. "}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
@@ -146,7 +143,7 @@ function MenuItemReviewForm({
               type="text"
               isInvalid={Boolean(errors.comments)}
               {...register("comments", {
-                required: "Comments is required",
+                required: "Comments is required. ",
               })}
             />
             <Form.Control.Feedback type="invalid">

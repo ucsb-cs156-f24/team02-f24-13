@@ -6,12 +6,12 @@ import {
   onDeleteSuccess,
 } from "main/utils/ArticlesUtils";
 import { useNavigate } from "react-router-dom";
-import { useQueryClient } from "react-query"; // Import useQueryClient
 import { hasRole } from "main/utils/currentUser";
+import { useQueryClient } from "react-query";
 
 export default function ArticlesTable({ articles, currentUser }) {
   const navigate = useNavigate();
-  const queryClient = useQueryClient(); // Define queryClient
+  const queryClient = useQueryClient();
 
   const editCallback = (cell) => {
     navigate(`/articles/edit/${cell.row.values.id}`);
@@ -23,7 +23,7 @@ export default function ArticlesTable({ articles, currentUser }) {
     {
       onSuccess: () => {
         onDeleteSuccess("Article deleted successfully");
-        queryClient.invalidateQueries(["/api/articles/all"]); // Use queryClient here
+        queryClient.invalidateQueries(["/api/articles/all"]);
       },
     },
     ["/api/articles/all"],

@@ -6,7 +6,10 @@ import { MemoryRouter } from "react-router-dom";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
+import { toast } from "react-toastify";
+import { onDeleteSuccess } from "main/utils/ArticlesUtils";
 
+// Mocking react-router-dom's useNavigate
 const mockedNavigate = jest.fn();
 
 jest.mock("react-router-dom", () => ({
@@ -14,7 +17,12 @@ jest.mock("react-router-dom", () => ({
   useNavigate: () => mockedNavigate,
 }));
 
-describe("ArticlesTable tests", () => {
+// Mocking react-toastify to prevent actual toasts during tests
+jest.mock("react-toastify", () => ({
+  toast: jest.fn(),
+}));
+
+describe("ArticlesTable deleteMutation tests", () => {
   const queryClient = new QueryClient();
 
   beforeEach(() => {
@@ -54,7 +62,7 @@ describe("ArticlesTable tests", () => {
     const testId = "ArticlesTable";
 
     expectedHeaders.forEach((headerText) => {
-      const header = screen.getByText(headerText);
+      const header = screen.getByRole("columnheader", { name: headerText });
       expect(header).toBeInTheDocument();
     });
 
@@ -64,6 +72,7 @@ describe("ArticlesTable tests", () => {
       expect(cell).toHaveTextContent(articlesFixtures.threeArticles[0][field]);
     });
 
+    // Ensure Edit and Delete buttons are not present for ordinary users
     const editButton = screen.queryByTestId(
       `${testId}-cell-row-0-col-Edit-button`,
     );
@@ -120,17 +129,24 @@ describe("ArticlesTable tests", () => {
       expect(cell).toHaveTextContent(articlesFixtures.threeArticles[0][field]);
     });
 
-    const editButton = screen.getAllByTestId(
-      /ArticlesTable-cell-row-\d+-col-Edit-button/,
-    )[0];
-    expect(editButton).toBeInTheDocument();
-    expect(editButton).toHaveClass("btn-primary");
+    // Ensure Edit and Delete buttons are present for admin users
+    const editButtons = screen.getAllByTestId(
+      /ArticlesTable-cell-row-.*-col-Edit-button/,
+    );
+    expect(editButtons.length).toBe(3);
+    editButtons.forEach((button) => {
+      expect(button).toBeInTheDocument();
+      expect(button).toHaveClass("btn-primary");
+    });
 
-    const deleteButton = screen.getAllByTestId(
-      /ArticlesTable-cell-row-\d+-col-Delete-button/,
-    )[0];
-    expect(deleteButton).toBeInTheDocument();
-    expect(deleteButton).toHaveClass("btn-danger");
+    const deleteButtons = screen.getAllByTestId(
+      /ArticlesTable-cell-row-.*-col-Delete-button/,
+    );
+    expect(deleteButtons.length).toBe(3);
+    deleteButtons.forEach((button) => {
+      expect(button).toBeInTheDocument();
+      expect(button).toHaveClass("btn-danger");
+    });
   });
 
   test("Edit button navigates to the edit page for admin user", async () => {
@@ -165,7 +181,6 @@ describe("ArticlesTable tests", () => {
 
   test("Delete button calls delete callback and invalidates queries", async () => {
     const currentUser = currentUserFixtures.adminUser;
-
     const axiosMock = new AxiosMockAdapter(axios);
     axiosMock
       .onDelete("/api/articles")
@@ -184,16 +199,28 @@ describe("ArticlesTable tests", () => {
       </QueryClientProvider>,
     );
 
+    await waitFor(() => {
+      expect(
+        screen.getByTestId(`ArticlesTable-cell-row-0-col-id`),
+      ).toHaveTextContent("1");
+    });
+
     const deleteButton = screen.getByTestId(
       `ArticlesTable-cell-row-0-col-Delete-button`,
     );
     fireEvent.click(deleteButton);
 
     await waitFor(() => expect(axiosMock.history.delete.length).toBe(1));
+    expect(axiosMock.history.delete[0].url).toBe("/api/articles");
     expect(axiosMock.history.delete[0].params).toEqual({ id: 1 });
 
     await waitFor(() =>
-      expect(invalidateQueriesSpy).toHaveBeenCalledWith(["/api/articles/all"]),
+      expect(toast).toHaveBeenCalledWith("Article deleted successfully"),
     );
+
+    // Ensure invalidateQueries was called with the correct key
+    await waitFor(() => {
+      expect(invalidateQueriesSpy).toHaveBeenCalledWith(["/api/articles/all"]);
+    });
   });
 });

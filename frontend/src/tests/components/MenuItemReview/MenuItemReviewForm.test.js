@@ -51,13 +51,42 @@ describe("menuItemReviewForm tests", () => {
     );
     const submitButton = screen.getByTestId("MenuItemReviewForm-submit");
 
-    fireEvent.change(itemIdField, { target: { value: "bad-input" } });
+    fireEvent.change(itemIdField, { target: { value: 0 } });
     fireEvent.change(reviewerEmailField, { target: { value: "bad-input" } });
-    fireEvent.change(starsField, { target: { value: "bad-input" } });
+    fireEvent.change(starsField, { target: { value: 10 } });
     fireEvent.change(dateReviewedField, { target: { value: "bad-input" } });
     fireEvent.click(submitButton);
 
-    await screen.findByText(/Item ID must be an integer, e.g. 1 for item #1/);
+    await screen.findByText(/Item ID must be an integer greater than 1/);
+    await screen.findByText(/Must input valid reviewer email/);
+    await screen.findByText(/Must give a rating between 0 and 5 stars/);
+    await screen.findByText(/DateReviewed is required/);
+  });
+
+  test("Correct Error messsages on negative Stars", async () => {
+    render(
+      <Router>
+        <MenuItemReviewForm />
+      </Router>,
+    );
+    await screen.findByTestId("MenuItemReviewForm-itemId");
+    const itemIdField = screen.getByTestId("MenuItemReviewForm-itemId");
+    const reviewerEmailField = screen.getByTestId(
+      "MenuItemReviewForm-reviewerEmail",
+    );
+    const starsField = screen.getByTestId("MenuItemReviewForm-stars");
+    const dateReviewedField = screen.getByTestId(
+      "MenuItemReviewForm-dateReviewed",
+    );
+    const submitButton = screen.getByTestId("MenuItemReviewForm-submit");
+
+    fireEvent.change(itemIdField, { target: { value: 0 } });
+    fireEvent.change(reviewerEmailField, { target: { value: "bad-input" } });
+    fireEvent.change(starsField, { target: { value: -1 } });
+    fireEvent.change(dateReviewedField, { target: { value: "bad-input" } });
+    fireEvent.click(submitButton);
+
+    await screen.findByText(/Item ID must be an integer greater than 1/);
     await screen.findByText(/Must input valid reviewer email/);
     await screen.findByText(/Must give a rating between 0 and 5 stars/);
     await screen.findByText(/DateReviewed is required/);

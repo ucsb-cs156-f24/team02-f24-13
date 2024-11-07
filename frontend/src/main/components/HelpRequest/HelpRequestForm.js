@@ -62,9 +62,9 @@ function HelpRequestForm({
                             isInvalid={Boolean(errors.requesterEmail)}
                             {...register("requesterEmail", {
                                 required: "Requester Email is required.",
-                                pattern: {
+                                /*pattern: {
                                     message: "Invalid email address.",
-                                },
+                                },*/
                             })}
                         />
                         <Form.Control.Feedback type="invalid">

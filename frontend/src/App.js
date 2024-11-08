@@ -114,7 +114,7 @@ function App() {
             <Route
               exact
               path="/recommendationrequest"
-              element={<MenuItemReviewIndexPage />}
+              element={<RecommendationRequestIndexPage />}
             />
           </>
         )}
@@ -123,12 +123,12 @@ function App() {
             <Route
               exact
               path="/recommendationrequest/edit/:id"
-              element={<PlaceholderEditPage />}
+              element={<RecommendationRequestEditPage />}
             />
             <Route
               exact
               path="/recommendationrequest/create"
-              element={<RecommendationRequestCreatePage 
+              element={<RecommendationRequestCreatePage/>}
             />
           </>
         )}

@@ -104,7 +104,7 @@ function App() {
             />
           </>
         )}
-        
+
         {hasRole(currentUser, "ROLE_USER") && (
           <>
             <Route
@@ -151,7 +151,6 @@ function App() {
             />
           </>
         )}
-        
       </Routes>
     </BrowserRouter>
   );

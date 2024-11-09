@@ -1,5 +1,7 @@
+// fixtures/helpRequestFixtures.js
+
 const helpRequestFixtures = {
-  firstRequest: {
+  oneRequest: {
     id: 1,
     requesterEmail: "dude101@gmail.com",
     teamId: "t-13",
@@ -8,7 +10,7 @@ const helpRequestFixtures = {
     explanation: "check frontend",
     solved: false,
   },
-  otherRequests: [
+  threeRequests: [
     {
       id: 1,
       requesterEmail: "bob@gmail.com",
@@ -32,7 +34,7 @@ const helpRequestFixtures = {
       requesterEmail: "imposter@gmail.com",
       teamId: "t-3",
       tableOrBreakoutRoom: "8",
-      requestTime: "2030-07-08T09:98:00",
+      requestTime: "2030-07-08T09:58:00",
       explanation: "incorrect",
       solved: false,
     },

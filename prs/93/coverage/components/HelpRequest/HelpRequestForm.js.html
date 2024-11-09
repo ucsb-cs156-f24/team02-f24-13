@@ -448,188 +448,188 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 &nbsp;
 function HelpRequestForm({
-  initialContents,
-  submitAction,
-  buttonLabel = "Create",
+    initialContents,
+    submitAction,
+    buttonLabel = "Create",
 }) {
-  // Stryker disable all
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm({ defaultValues: initialContents || {} });
-  // Stryker restore all
+    // Stryker disable all
+    const {
+        register,
+        formState: { errors },
+        handleSubmit,
+    } = useForm({ defaultValues: initialContents || {} });
+    // Stryker restore all
 &nbsp;
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 &nbsp;
-  // For explanation, see: https://stackoverflow.com/questions/3143070/javascript-regex-iso-datetime
-  // Note that even this complex regex may still need some tweaks
+    // For explanation, see: https://stackoverflow.com/questions/3143070/javascript-regex-iso-datetime
+    // Note that even this complex regex may still need some tweaks
 &nbsp;
-  // Stryker disable Regex
-  const isodate_regex =
-    /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
-  // Stryker restore Regex
+    // Stryker disable Regex
+    const isodate_regex =
+        /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
+    // Stryker restore Regex
 &nbsp;
-  // Stryker disable Regex
-  //const mailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  // Stryker restore Regex
+    // Stryker disable Regex
+    //const mailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // Stryker restore Regex
 &nbsp;
-  // Stryker disable next-line all
-  //const yyyyq_regex = /((19)|(20))\d{2}[1-4]/i; // Accepts from 1900-2099 followed by 1-4.  Close enough.
+    // Stryker disable next-line all
+    //const yyyyq_regex = /((19)|(20))\d{2}[1-4]/i; // Accepts from 1900-2099 followed by 1-4.  Close enough.
 &nbsp;
-  return (
-    &lt;Form onSubmit={handleSubmit(submitAction)}&gt;
-      &lt;Row&gt;
-        {initialContents &amp;&amp; (
-          &lt;Col&gt;
-            &lt;Form.Group className="mb-3"&gt;
-              &lt;Form.Label htmlFor="id"&gt;Id&lt;/Form.Label&gt;
-              &lt;Form.Control
-                data-testid="HelpRequestForm-id"
-                id="id"
-                type="text"
-                {...register("id")}
-                value={initialContents.id}
-                disabled
-              /&gt;
-            &lt;/Form.Group&gt;
-          &lt;/Col&gt;
-        )}
+    return (
+        &lt;Form onSubmit={handleSubmit(submitAction)}&gt;
+            &lt;Row&gt;
+                {initialContents &amp;&amp; (
+                    &lt;Col&gt;
+                        &lt;Form.Group className="mb-3"&gt;
+                            &lt;Form.Label htmlFor="id"&gt;Id&lt;/Form.Label&gt;
+                            &lt;Form.Control
+                                data-testid="HelpRequestForm-id"
+                                id="id"
+                                type="text"
+                                {...register("id")}
+                                value={initialContents.id}
+                                disabled
+                            /&gt;
+                        &lt;/Form.Group&gt;
+                    &lt;/Col&gt;
+                )}
 &nbsp;
-        &lt;Col&gt;
-          &lt;Form.Group className="mb-3"&gt;
-            &lt;Form.Label htmlFor="requesterEmail"&gt;Requester Email&lt;/Form.Label&gt;
-            &lt;Form.Control
-              data-testid="HelpRequestForm-requesterEmail"
-              id="requesterEmail"
-              type="email"
-              isInvalid={Boolean(errors.requesterEmail)}
-              {...register("requesterEmail", {
-                required: "Requester Email is required.",
-                /*pattern: {
-                                    message: "Invalid email address.",
-                                },*/
-              })}
-            /&gt;
-            &lt;Form.Control.Feedback type="invalid"&gt;
-              {errors.requesterEmail?.message}
-            &lt;/Form.Control.Feedback&gt;
-          &lt;/Form.Group&gt;
-        &lt;/Col&gt;
-      &lt;/Row&gt;
+                &lt;Col&gt;
+                    &lt;Form.Group className="mb-3"&gt;
+                        &lt;Form.Label htmlFor="requesterEmail"&gt;Requester Email&lt;/Form.Label&gt;
+                        &lt;Form.Control
+                            data-testid="HelpRequestForm-requesterEmail"
+                            id="requesterEmail"
+                            type="email"
+                            isInvalid={Boolean(errors.requesterEmail)}
+                            {...register("requesterEmail", {
+                                required: "Requester Email is required.",
+                                /*pattern: {
+                                                    message: "Invalid email address.",
+                                                },*/
+                            })}
+                        /&gt;
+                        &lt;Form.Control.Feedback type="invalid"&gt;
+                            {errors.requesterEmail?.message}
+                        &lt;/Form.Control.Feedback&gt;
+                    &lt;/Form.Group&gt;
+                &lt;/Col&gt;
+            &lt;/Row&gt;
 &nbsp;
-      &lt;Row&gt;
-        &lt;Col&gt;
-          &lt;Form.Group className="mb-3"&gt;
-            &lt;Form.Label htmlFor="teamId"&gt;Team ID&lt;/Form.Label&gt;
-            &lt;Form.Control
-              data-testid="HelpRequestForm-teamId"
-              id="teamId"
-              type="text"
-              isInvalid={Boolean(errors.teamId)}
-              {...register("teamId", {
-                required: "Team ID is required.",
-              })}
-            /&gt;
-            &lt;Form.Control.Feedback type="invalid"&gt;
-              {errors.teamId?.message}
-            &lt;/Form.Control.Feedback&gt;
-          &lt;/Form.Group&gt;
-        &lt;/Col&gt;
+            &lt;Row&gt;
+                &lt;Col&gt;
+                    &lt;Form.Group className="mb-3"&gt;
+                        &lt;Form.Label htmlFor="teamId"&gt;Team ID&lt;/Form.Label&gt;
+                        &lt;Form.Control
+                            data-testid="HelpRequestForm-teamId"
+                            id="teamId"
+                            type="text"
+                            isInvalid={Boolean(errors.teamId)}
+                            {...register("teamId", {
+                                required: "Team ID is required.",
+                            })}
+                        /&gt;
+                        &lt;Form.Control.Feedback type="invalid"&gt;
+                            {errors.teamId?.message}
+                        &lt;/Form.Control.Feedback&gt;
+                    &lt;/Form.Group&gt;
+                &lt;/Col&gt;
 &nbsp;
-        &lt;Col&gt;
-          &lt;Form.Group className="mb-3"&gt;
-            &lt;Form.Label htmlFor="tableOrBreakoutRoom"&gt;
-              Table or Breakout Room
-            &lt;/Form.Label&gt;
-            &lt;Form.Control
-              data-testid="HelpRequestForm-tableOrBreakoutRoom"
-              id="tableOrBreakoutRoom"
-              type="text"
-              isInvalid={Boolean(errors.tableOrBreakoutRoom)}
-              {...register("tableOrBreakoutRoom", {
-                required: "Table or Breakout Room is required.",
-              })}
-            /&gt;
-            &lt;Form.Control.Feedback type="invalid"&gt;
-              {errors.tableOrBreakoutRoom?.message}
-            &lt;/Form.Control.Feedback&gt;
-          &lt;/Form.Group&gt;
-        &lt;/Col&gt;
-      &lt;/Row&gt;
+                &lt;Col&gt;
+                    &lt;Form.Group className="mb-3"&gt;
+                        &lt;Form.Label htmlFor="tableOrBreakoutRoom"&gt;
+                            Table or Breakout Room
+                        &lt;/Form.Label&gt;
+                        &lt;Form.Control
+                            data-testid="HelpRequestForm-tableOrBreakoutRoom"
+                            id="tableOrBreakoutRoom"
+                            type="text"
+                            isInvalid={Boolean(errors.tableOrBreakoutRoom)}
+                            {...register("tableOrBreakoutRoom", {
+                                required: "Table or Breakout Room is required.",
+                            })}
+                        /&gt;
+                        &lt;Form.Control.Feedback type="invalid"&gt;
+                            {errors.tableOrBreakoutRoom?.message}
+                        &lt;/Form.Control.Feedback&gt;
+                    &lt;/Form.Group&gt;
+                &lt;/Col&gt;
+            &lt;/Row&gt;
 &nbsp;
-      &lt;Row&gt;
-        &lt;Col&gt;
-          &lt;Form.Group className="mb-3"&gt;
-            &lt;Form.Label htmlFor="requestTime"&gt;Request Time&lt;/Form.Label&gt;
-            &lt;Form.Control
-              data-testid="HelpRequestForm-requestTime"
-              id="requestTime"
-              type="datetime-local"
-              isInvalid={Boolean(errors.requestTime)}
-              {...register("requestTime", {
-                required: "Request Time is required.",
-                pattern: isodate_regex,
-              })}
-            /&gt;
-            &lt;Form.Control.Feedback type="invalid"&gt;
-              {errors.requestTime &amp;&amp; "Request Time is required. "}
-              {/* {errors.requestTime?.type === "pattern" &amp;&amp;
+            &lt;Row&gt;
+                &lt;Col&gt;
+                    &lt;Form.Group className="mb-3"&gt;
+                        &lt;Form.Label htmlFor="requestTime"&gt;Request Time&lt;/Form.Label&gt;
+                        &lt;Form.Control
+                            data-testid="HelpRequestForm-requestTime"
+                            id="requestTime"
+                            type="datetime-local"
+                            isInvalid={Boolean(errors.requestTime)}
+                            {...register("requestTime", {
+                                required: "Request Time is required.",
+                                pattern: isodate_regex,
+                            })}
+                        /&gt;
+                        &lt;Form.Control.Feedback type="invalid"&gt;
+                            {errors.requestTime &amp;&amp; "Request Time is required. "}
+                            {/* {errors.requestTime?.type === "pattern" &amp;&amp;
                                 "Request Time must be in ISO format."} */}
-            &lt;/Form.Control.Feedback&gt;
-          &lt;/Form.Group&gt;
-        &lt;/Col&gt;
-      &lt;/Row&gt;
+                        &lt;/Form.Control.Feedback&gt;
+                    &lt;/Form.Group&gt;
+                &lt;/Col&gt;
+            &lt;/Row&gt;
 &nbsp;
-      &lt;Row&gt;
-        &lt;Col&gt;
-          &lt;Form.Group className="mb-3"&gt;
-            &lt;Form.Label htmlFor="explanation"&gt;Explanation&lt;/Form.Label&gt;
-            &lt;Form.Control
-              data-testid="HelpRequestForm-explanation"
-              id="explanation"
-              type="text"
-              isInvalid={Boolean(errors.explanation)}
-              {...register("explanation", {
-                required: "Explanation is required.",
-              })}
-            /&gt;
-            &lt;Form.Control.Feedback type="invalid"&gt;
-              {errors.explanation?.message}
-            &lt;/Form.Control.Feedback&gt;
-          &lt;/Form.Group&gt;
-        &lt;/Col&gt;
-      &lt;/Row&gt;
+            &lt;Row&gt;
+                &lt;Col&gt;
+                    &lt;Form.Group className="mb-3"&gt;
+                        &lt;Form.Label htmlFor="explanation"&gt;Explanation&lt;/Form.Label&gt;
+                        &lt;Form.Control
+                            data-testid="HelpRequestForm-explanation"
+                            id="explanation"
+                            type="text"
+                            isInvalid={Boolean(errors.explanation)}
+                            {...register("explanation", {
+                                required: "Explanation is required.",
+                            })}
+                        /&gt;
+                        &lt;Form.Control.Feedback type="invalid"&gt;
+                            {errors.explanation?.message}
+                        &lt;/Form.Control.Feedback&gt;
+                    &lt;/Form.Group&gt;
+                &lt;/Col&gt;
+            &lt;/Row&gt;
 &nbsp;
-      &lt;Row&gt;
-        &lt;Col&gt;
-          &lt;Form.Group className="mb-3"&gt;
-            &lt;Form.Check
-              data-testid="HelpRequestForm-solved"
-              id="solved"
-              label="Solved"
-              {...register("solved")}
-            /&gt;
-          &lt;/Form.Group&gt;
-        &lt;/Col&gt;
-      &lt;/Row&gt;
+            &lt;Row&gt;
+                &lt;Col&gt;
+                    &lt;Form.Group className="mb-3"&gt;
+                        &lt;Form.Check
+                            data-testid="HelpRequestForm-solved"
+                            id="solved"
+                            label="Solved"
+                            {...register("solved")}
+                        /&gt;
+                    &lt;/Form.Group&gt;
+                &lt;/Col&gt;
+            &lt;/Row&gt;
 &nbsp;
-      &lt;Row&gt;
-        &lt;Col&gt;
-          &lt;Button type="submit" data-testid="HelpRequestForm-submit"&gt;
-            {buttonLabel}
-          &lt;/Button&gt;
-          &lt;Button
-            variant="Secondary"
-            onClick={() =&gt; navigate(-1)}
-            data-testid="HelpRequestForm-cancel"
-          &gt;
-            Cancel
-          &lt;/Button&gt;
-        &lt;/Col&gt;
-      &lt;/Row&gt;
-    &lt;/Form&gt;
-  );
+            &lt;Row&gt;
+                &lt;Col&gt;
+                    &lt;Button type="submit" data-testid="HelpRequestForm-submit"&gt;
+                        {buttonLabel}
+                    &lt;/Button&gt;
+                    &lt;Button
+                        variant="Secondary"
+                        onClick={() =&gt; navigate(-1)}
+                        data-testid="HelpRequestForm-cancel"
+                    &gt;
+                        Cancel
+                    &lt;/Button&gt;
+                &lt;/Col&gt;
+            &lt;/Row&gt;
+        &lt;/Form&gt;
+    );
 }
 &nbsp;
 export default HelpRequestForm;
@@ -640,7 +640,7 @@ export default HelpRequestForm;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-11-07T06:57:11.704Z
+                at 2024-11-09T05:39:40.018Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -5,38 +5,38 @@ import { currentUserFixtures } from "fixtures/currentUserFixtures";
 import { http, HttpResponse } from "msw";
 
 export default {
-    title: "components/HelpRequest/HelpRequestTable",
-    component: HelpRequestTable,
+  title: "components/HelpRequest/HelpRequestTable",
+  component: HelpRequestTable,
 };
 
 const Template = (args) => {
-    return <HelpRequestTable {...args} />;
+  return <HelpRequestTable {...args} />;
 };
 
 export const Empty = Template.bind({});
 
 Empty.args = {
-    helpRequests: [],
-    currentUser: currentUserFixtures.userOnly,
+  helpRequests: [],
+  currentUser: currentUserFixtures.userOnly,
 };
 
 export const ThreeItemsOrdinaryUser = Template.bind({});
 
 ThreeItemsOrdinaryUser.args = {
-    helpRequests: helpRequestFixtures.threeRequests,
-    currentUser: currentUserFixtures.userOnly,
+  helpRequests: helpRequestFixtures.threeRequests,
+  currentUser: currentUserFixtures.userOnly,
 };
 
 export const ThreeItemsAdminUser = Template.bind({});
 ThreeItemsAdminUser.args = {
-    helpRequests: helpRequestFixtures.threeRequests,
-    currentUser: currentUserFixtures.adminUser,
+  helpRequests: helpRequestFixtures.threeRequests,
+  currentUser: currentUserFixtures.adminUser,
 };
 
 ThreeItemsAdminUser.parameters = {
-    msw: [
-        http.delete("/api/helprequests", () => {
-            return HttpResponse.json({}, { status: 200 });
-        }),
-    ],
+  msw: [
+    http.delete("/api/helprequests", () => {
+      return HttpResponse.json({}, { status: 200 });
+    }),
+  ],
 };

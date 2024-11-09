@@ -9,7 +9,6 @@ export default {
     component: HelpRequestTable,
 };
 
-
 const Template = (args) => {
     return <HelpRequestTable {...args} />;
 };

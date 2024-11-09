@@ -39,13 +39,9 @@ describe("HelpRequestForm tests", () => {
             </Router>,
         );
         await screen.findByTestId("HelpRequestForm-requesterEmail");
-        const requesterEmailField = screen.getByTestId(
-            "HelpRequestForm-requesterEmail",
-        );
+        const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
         const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
-        const tableOrBreakoutRoomField = screen.getByTestId(
-            "HelpRequestForm-tableOrBreakoutRoom",
-        );
+        const tableOrBreakoutRoomField = screen.getByTestId("HelpRequestForm-tableOrBreakoutRoom");
         const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
         const explanationField = screen.getByTestId("HelpRequestForm-explanation");
         const submitButton = screen.getByTestId("HelpRequestForm-submit");
@@ -53,9 +49,7 @@ describe("HelpRequestForm tests", () => {
         fireEvent.change(requesterEmailField, { target: { value: "bad-input" } });
         fireEvent.change(requestTimeField, { target: { value: "bad-input" } });
         fireEvent.change(teamIdField, { target: { value: "bad-input" } });
-        fireEvent.change(tableOrBreakoutRoomField, {
-            target: { value: "bad-input" },
-        });
+        fireEvent.change(tableOrBreakoutRoomField, { target: { value: "bad-input" } });
         fireEvent.change(explanationField, { target: { value: "bad-input" } });
         fireEvent.click(submitButton);
 
@@ -75,9 +69,7 @@ describe("HelpRequestForm tests", () => {
 
         await screen.findByText(/Requester Email is required./);
         expect(screen.getByText(/Team ID is required./)).toBeInTheDocument();
-        expect(
-            screen.getByText(/Table or Breakout Room is required./),
-        ).toBeInTheDocument();
+        expect(screen.getByText(/Table or Breakout Room is required./)).toBeInTheDocument();
         expect(screen.getByText(/Request Time is required./)).toBeInTheDocument();
         expect(screen.getByText(/Explanation is required./)).toBeInTheDocument();
     });
@@ -92,36 +84,23 @@ describe("HelpRequestForm tests", () => {
         );
         await screen.findByTestId("HelpRequestForm-requesterEmail");
 
-        const requesterEmailField = screen.getByTestId(
-            "HelpRequestForm-requesterEmail",
-        );
+        const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
         const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
-        const tableOrBreakoutRoomField = screen.getByTestId(
-            "HelpRequestForm-tableOrBreakoutRoom",
-        );
+        const tableOrBreakoutRoomField = screen.getByTestId("HelpRequestForm-tableOrBreakoutRoom");
         const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
         const explanationField = screen.getByTestId("HelpRequestForm-explanation");
         const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
-        fireEvent.change(requesterEmailField, {
-            target: { value: "bob@gmail.com" },
-        });
+        fireEvent.change(requesterEmailField, { target: { value: "bob@gmail.com" } });
         fireEvent.change(teamIdField, { target: { value: "team-3" } });
         fireEvent.change(tableOrBreakoutRoomField, { target: { value: "13" } });
-        fireEvent.change(requestTimeField, {
-            target: { value: "2022-01-02T12:00" },
-        });
-        fireEvent.change(explanationField, {
-            target: { value: "Need assistance with project setup." },
-        });
-
+        fireEvent.change(requestTimeField, { target: { value: "2022-01-02T12:00" } });
+        fireEvent.change(explanationField, { target: { value: "Need assistance with project setup." } });
         fireEvent.click(submitButton);
 
         await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
 
-        expect(
-            screen.queryByText(/Request Time must be in ISO format./),
-        ).not.toBeInTheDocument();
+        expect(screen.queryByText(/Request Time must be in ISO format./)).not.toBeInTheDocument();
     });
 
     test("that navigate(-1) is called when Cancel is clicked", async () => {

@@ -1,5 +1,3 @@
-// src/main/components/HelpRequest/HelpRequestTable.js
-
 import React from "react";
 import OurTable, { ButtonColumn } from "main/components/OurTable";
 
@@ -15,7 +13,7 @@ export default function HelpRequestTable({ helpRequests, currentUser }) {
     const navigate = useNavigate();
 
     const editCallback = (cell) => {
-        navigate(`/helprequests/edit/${cell.row.values.id}`); // Corrected with backticks
+        navigate(`/helprequests/edit/${cell.row.values.id}`);
     };
 
     // Stryker disable all : hard to test for query caching
@@ -23,7 +21,7 @@ export default function HelpRequestTable({ helpRequests, currentUser }) {
     const deleteMutation = useBackendMutation(
         cellToAxiosParamsDelete,
         { onSuccess: onDeleteSuccess },
-        ["/api/helprequests/all"]
+        ["/api/helprequests/all"],
     );
     // Stryker restore all
 
@@ -65,12 +63,18 @@ export default function HelpRequestTable({ helpRequests, currentUser }) {
 
     if (hasRole(currentUser, "ROLE_ADMIN")) {
         columns.push(
-            ButtonColumn("Edit", "primary", editCallback, "HelpRequestTable")
+            ButtonColumn("Edit", "primary", editCallback, "HelpRequestTable"),
         );
         columns.push(
-            ButtonColumn("Delete", "danger", deleteCallback, "HelpRequestTable")
+            ButtonColumn("Delete", "danger", deleteCallback, "HelpRequestTable"),
         );
     }
 
-    return <OurTable data={helpRequests} columns={columns} testid={"HelpRequestTable"} />;
+    return (
+        <OurTable
+            data={helpRequests}
+            columns={columns}
+            testid={"HelpRequestTable"}
+        />
+    );
 }

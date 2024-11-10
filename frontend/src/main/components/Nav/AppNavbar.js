@@ -14,8 +14,8 @@ export default function AppNavbar({
     <>
       {(currentUrl.startsWith("http://localhost:3000") ||
         currentUrl.startsWith("http://127.0.0.1:3000")) && (
-        <AppNavbarLocalhost url={currentUrl} />
-      )}
+          <AppNavbarLocalhost url={currentUrl} />
+        )}
       <Navbar
         expand="xl"
         variant="dark"
@@ -71,6 +71,9 @@ export default function AppNavbar({
                   </Nav.Link>
                   <Nav.Link as={Link} to="/recommendationrequest">
                     Recommendation Request
+                  </Nav.Link>
+                  <Nav.Link as={Link} to="/helprequests">
+                    Help Request
                   </Nav.Link>
                 </>
               ) : (

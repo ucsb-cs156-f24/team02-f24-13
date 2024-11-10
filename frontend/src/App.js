@@ -81,6 +81,29 @@ function App() {
           <>
             <Route
               exact
+              path="/"
+              element={<HelpRequestIndexPage />}
+            />
+          </>
+        )}
+        {hasRole(currentUser, "ROLE_ADMIN") && (
+          <>
+            <Route
+              exact
+              path="/helprequests/edit/:id"
+              element={<HelpRequestEditPage />}
+            />
+            <Route
+              exact
+              path="/helprequests/create"
+              element={<HelpRequestCreatePage />}
+            />
+          </>
+        )}
+        {hasRole(currentUser, "ROLE_USER") && (
+          <>
+            <Route
+              exact
               path="/ucsbdiningcommonsmenuitem"
               element={<UCSBDiningCommonsMenuItemIndexPage />}
             />

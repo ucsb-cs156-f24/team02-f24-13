@@ -47,7 +47,7 @@ describe("ArticlesCreatePage tests", () => {
       .reply(200, systemInfoFixtures.showingNeither);
 
     queryClient = new QueryClient();
-    jest.spyOn(queryClient, 'invalidateQueries');
+    jest.spyOn(queryClient, "invalidateQueries");
   });
 
   afterEach(() => {
@@ -101,7 +101,9 @@ describe("ArticlesCreatePage tests", () => {
 
     fireEvent.change(titleField, { target: { value: "My First Article" } });
     fireEvent.change(urlField, { target: { value: "https://example.com" } });
-    fireEvent.change(explanationField, { target: { value: "This is an example article" } });
+    fireEvent.change(explanationField, {
+      target: { value: "This is an example article" },
+    });
     fireEvent.change(emailField, { target: { value: "author@example.com" } });
     fireEvent.change(dateAddedField, { target: { value: "2024-11-09T00:00" } });
 
@@ -118,10 +120,14 @@ describe("ArticlesCreatePage tests", () => {
     });
 
     // Verify that the toast and navigation occurred
-    expect(mockToast).toBeCalledWith("New article Created - id: 1 title: My First Article");
+    expect(mockToast).toBeCalledWith(
+      "New article Created - id: 1 title: My First Article",
+    );
     expect(mockNavigate).toBeCalledWith("/articles");
 
     // Assert cache invalidation logic
-    expect(queryClient.invalidateQueries).toHaveBeenCalledWith(["/api/articles/all"]);
+    expect(queryClient.invalidateQueries).toHaveBeenCalledWith([
+      "/api/articles/all",
+    ]);
   });
 });

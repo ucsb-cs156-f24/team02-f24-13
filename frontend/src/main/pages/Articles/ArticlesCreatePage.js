@@ -24,7 +24,7 @@ export default function ArticlesCreatePage({ storybook = false }) {
   const mutation = useBackendMutation(
     objectToAxiosParams,
     { onSuccess },
-    ["/api/articles/all"] // Dependency array for cache invalidation
+    ["/api/articles/all"], // Dependency array for cache invalidation
   );
 
   const { isSuccess } = mutation;

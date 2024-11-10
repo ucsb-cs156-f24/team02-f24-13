@@ -61,11 +61,11 @@ describe("ArticlesEditPage tests", () => {
           <MemoryRouter>
             <ArticlesEditPage />
           </MemoryRouter>
-        </QueryClientProvider>
+        </QueryClientProvider>,
       );
       await screen.findByText("Edit Article");
       expect(
-        screen.queryByTestId("ArticlesForm-title")
+        screen.queryByTestId("ArticlesForm-title"),
       ).not.toBeInTheDocument();
       restoreConsole();
     });
@@ -108,7 +108,7 @@ describe("ArticlesEditPage tests", () => {
           <MemoryRouter>
             <ArticlesEditPage />
           </MemoryRouter>
-        </QueryClientProvider>
+        </QueryClientProvider>,
       );
 
       await screen.findByTestId("ArticlesForm-title");
@@ -120,7 +120,7 @@ describe("ArticlesEditPage tests", () => {
           <MemoryRouter>
             <ArticlesEditPage />
           </MemoryRouter>
-        </QueryClientProvider>
+        </QueryClientProvider>,
       );
 
       await screen.findByTestId("ArticlesForm-title");
@@ -148,7 +148,7 @@ describe("ArticlesEditPage tests", () => {
           <MemoryRouter>
             <ArticlesEditPage />
           </MemoryRouter>
-        </QueryClientProvider>
+        </QueryClientProvider>,
       );
 
       await screen.findByTestId("ArticlesForm-title");
@@ -165,7 +165,9 @@ describe("ArticlesEditPage tests", () => {
       fireEvent.change(explanationField, {
         target: { value: "Updated Explanation" },
       });
-      fireEvent.change(emailField, { target: { value: "updated@example.com" } });
+      fireEvent.change(emailField, {
+        target: { value: "updated@example.com" },
+      });
       fireEvent.change(dateAddedField, {
         target: { value: "2022-12-25T08:00" },
       });
@@ -174,7 +176,7 @@ describe("ArticlesEditPage tests", () => {
 
       await waitFor(() => expect(mockToast).toBeCalled());
       expect(mockToast).toBeCalledWith(
-        "Article Updated - id: 17 title: Updated Article"
+        "Article Updated - id: 17 title: Updated Article",
       );
       expect(mockNavigate).toBeCalledWith({ to: "/articles" });
 
@@ -187,7 +189,7 @@ describe("ArticlesEditPage tests", () => {
           explanation: "Updated Explanation",
           email: "updated@example.com",
           dateAdded: "2022-12-25T08:00",
-        })
+        }),
       );
     });
   });

@@ -20,6 +20,22 @@ jest.mock("react-toastify", () => {
   };
 });
 
+const mockNavigate = jest.fn();
+jest.mock("react-router-dom", () => {
+  const originalModule = jest.requireActual("react-router-dom");
+  return {
+    __esModule: true,
+    ...originalModule,
+    useParams: () => ({
+      id: 17,
+    }),
+    Navigate: (props) => {
+      mockNavigate(props);
+      return null;
+    },
+  };
+});
+
 describe("ArticlesIndexPage tests", () => {
   const axiosMock = new AxiosMockAdapter(axios);
 
@@ -50,14 +66,14 @@ describe("ArticlesIndexPage tests", () => {
   test("Renders with Create Button for admin user", async () => {
     setupAdminUser();
     const queryClient = new QueryClient();
-    axiosMock.onGet("/api/articles/all").reply(200, []);
+    axiosMock.onGet("/api/articles/all").reply(200, []); // Updated endpoint
 
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
           <ArticlesIndexPage />
         </MemoryRouter>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     await waitFor(() => {
@@ -66,26 +82,38 @@ describe("ArticlesIndexPage tests", () => {
     const button = screen.getByText(/Create Article/);
     expect(button).toHaveAttribute("href", "/articles/create");
     expect(button).toHaveAttribute("style", "float: right;");
+    expect(button).toHaveAttribute(
+      "data-testid",
+      "ArticlesIndexPage-create-button",
+    );
   });
 
   test("renders three articles correctly for regular user", async () => {
     setupUserOnly();
     const queryClient = new QueryClient();
-    axiosMock.onGet("/api/articles/all").reply(200, articlesFixtures.threeArticles);
+    axiosMock
+      .onGet("/api/articles/all")
+      .reply(200, articlesFixtures.threeArticles);
 
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
           <ArticlesIndexPage />
         </MemoryRouter>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     await waitFor(() => {
-      expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");
+      expect(
+        screen.getByTestId(`${testId}-cell-row-0-col-id`),
+      ).toHaveTextContent("1");
     });
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("2");
-    expect(screen.getByTestId(`${testId}-cell-row-2-col-id`)).toHaveTextContent("3");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent(
+      "2",
+    );
+    expect(screen.getByTestId(`${testId}-cell-row-2-col-id`)).toHaveTextContent(
+      "3",
+    );
 
     expect(screen.queryByText(/Create Article/)).not.toBeInTheDocument();
   });
@@ -101,7 +129,7 @@ describe("ArticlesIndexPage tests", () => {
         <MemoryRouter>
           <ArticlesIndexPage />
         </MemoryRouter>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     await waitFor(() => {
@@ -110,32 +138,46 @@ describe("ArticlesIndexPage tests", () => {
 
     const errorMessage = console.error.mock.calls[0][0];
     expect(errorMessage).toMatch(
-      "Error communicating with backend via GET on /api/articles/all"
+      "Error communicating with backend via GET on /api/articles/all",
     );
     restoreConsole();
 
-    expect(screen.queryByTestId(`${testId}-cell-row-0-col-id`)).not.toBeInTheDocument();
+    expect(
+      screen.queryByTestId(`${testId}-cell-row-0-col-id`),
+    ).not.toBeInTheDocument();
   });
 
   test("what happens when you click delete, admin", async () => {
     setupAdminUser();
     const queryClient = new QueryClient();
-    axiosMock.onGet("/api/articles/all").reply(200, articlesFixtures.threeArticles);
-    axiosMock.onDelete("/api/articles").reply(200, "Article with id 1 was deleted");
+    axiosMock
+      .onGet("/api/articles/all")
+      .reply(200, articlesFixtures.threeArticles);
+    axiosMock
+      .onDelete("/api/articles")
+      .reply(200, "Article with id 1 was deleted");
 
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
           <ArticlesIndexPage />
         </MemoryRouter>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     await waitFor(() => {
-      expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toBeInTheDocument();
+      expect(
+        screen.getByTestId(`${testId}-cell-row-0-col-id`),
+      ).toBeInTheDocument();
     });
 
-    const deleteButton = screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`);
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent(
+      "1",
+    );
+
+    const deleteButton = screen.getByTestId(
+      `${testId}-cell-row-0-col-Delete-button`,
+    );
     expect(deleteButton).toBeInTheDocument();
 
     fireEvent.click(deleteButton);

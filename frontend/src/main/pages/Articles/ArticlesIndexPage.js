@@ -1,5 +1,6 @@
 import React from "react";
 import { useBackend } from "main/utils/useBackend";
+
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import ArticlesTable from "main/components/Articles/ArticlesTable";
 import { Button } from "react-bootstrap";
@@ -15,6 +16,7 @@ export default function ArticlesIndexPage() {
           variant="primary"
           href="/articles/create"
           style={{ float: "right" }}
+          data-testid="ArticlesIndexPage-create-button"
         >
           Create Article
         </Button>

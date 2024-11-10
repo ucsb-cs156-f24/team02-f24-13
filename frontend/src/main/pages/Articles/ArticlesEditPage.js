@@ -1,3 +1,4 @@
+import React from "react";
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import { useParams } from "react-router-dom";
 import ArticlesForm from "main/components/Articles/ArticlesForm";
@@ -10,18 +11,15 @@ export default function ArticlesEditPage({ storybook = false }) {
 
   const {
     data: article,
-    _error,
-    _status,
-  } = useBackend(
-    [`/api/articles?id=${id}`],
-    {
-      method: "GET",
-      url: `/api/articles`,
-      params: {
-        id,
-      },
+    error: _error,
+    status: _status,
+  } = useBackend([`/api/articles?id=${id}`], {
+    method: "GET",
+    url: `/api/articles`,
+    params: {
+      id,
     },
-  );
+  });
 
   const objectToAxiosPutParams = (article) => ({
     url: "/api/articles",
@@ -42,11 +40,9 @@ export default function ArticlesEditPage({ storybook = false }) {
     toast(`Article Updated - id: ${article.id} title: ${article.title}`);
   };
 
-  const mutation = useBackendMutation(
-    objectToAxiosPutParams,
-    { onSuccess },
-    [`/api/articles?id=${id}`],
-  );
+  const mutation = useBackendMutation(objectToAxiosPutParams, { onSuccess }, [
+    `/api/articles?id=${id}`,
+  ]);
 
   const { isSuccess } = mutation;
 

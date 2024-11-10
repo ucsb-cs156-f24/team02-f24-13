@@ -37,8 +37,12 @@ describe("ArticlesCreatePage tests", () => {
   beforeEach(() => {
     axiosMock.reset();
     axiosMock.resetHistory();
-    axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
-    axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
+    axiosMock
+      .onGet("/api/currentUser")
+      .reply(200, apiCurrentUserFixtures.userOnly);
+    axiosMock
+      .onGet("/api/systemInfo")
+      .reply(200, systemInfoFixtures.showingNeither);
   });
 
   test("renders without crashing", async () => {
@@ -48,7 +52,7 @@ describe("ArticlesCreatePage tests", () => {
         <MemoryRouter>
           <ArticlesCreatePage />
         </MemoryRouter>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     await waitFor(() => {
@@ -74,7 +78,7 @@ describe("ArticlesCreatePage tests", () => {
         <MemoryRouter>
           <ArticlesCreatePage />
         </MemoryRouter>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     await waitFor(() => {
@@ -90,7 +94,9 @@ describe("ArticlesCreatePage tests", () => {
 
     fireEvent.change(titleField, { target: { value: "New Article" } });
     fireEvent.change(urlField, { target: { value: "http://example.com" } });
-    fireEvent.change(explanationField, { target: { value: "This is a new article." } });
+    fireEvent.change(explanationField, {
+      target: { value: "This is a new article." },
+    });
     fireEvent.change(emailField, { target: { value: "user@example.com" } });
     fireEvent.change(dateAddedField, { target: { value: "2022-02-02T00:00" } });
 
@@ -108,7 +114,9 @@ describe("ArticlesCreatePage tests", () => {
       dateAdded: "2022-02-02T00:00",
     });
 
-    expect(mockToast).toBeCalledWith("New article Created - id: 17 title: New Article");
+    expect(mockToast).toBeCalledWith(
+      "New article Created - id: 17 title: New Article",
+    );
     expect(mockNavigate).toBeCalledWith({ to: "/articles" });
   });
 });

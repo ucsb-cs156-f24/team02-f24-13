@@ -21,11 +21,7 @@ export default function ArticlesCreatePage({ storybook = false }) {
     toast(`New article Created - id: ${article.id} title: ${article.title}`);
   };
 
-  const mutation = useBackendMutation(
-    objectToAxiosParams,
-    { onSuccess },
-    ["/api/articles/all"],
-  );
+  const mutation = useBackendMutation(objectToAxiosParams, { onSuccess });
 
   const { isSuccess } = mutation;
 

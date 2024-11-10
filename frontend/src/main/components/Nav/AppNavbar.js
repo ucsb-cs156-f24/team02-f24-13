@@ -58,7 +58,7 @@ export default function AppNavbar({
                   <NavDropdown.Item href="/admin/users">Users</NavDropdown.Item>
                 </NavDropdown>
               )}
-              {currentUser && currentUser.loggedIn ? (
+              {currentUser && currentUser.loggedIn ?
                 <>
                   <Nav.Link as={Link} to="/restaurants">
                     Restaurants
@@ -72,21 +72,21 @@ export default function AppNavbar({
                   <Nav.Link as={Link} to="/recommendationrequest">
                     Recommendation Request
                   </Nav.Link>
-              copyPlaceHolderHelpRequest
+
                   <Nav.Link as={Link} to="/helprequests">
                     Help Request
-
+                  </Nav.Link>
                   <Nav.Link as={Link} to="/articles">
                     Articles
                   </Nav.Link>
                   <Nav.Link as={Link} to="/menuitemreview">
                     Menu Item Review
-                  main
+                    main
                   </Nav.Link>
                 </>
-              ) : (
-                <></>
-              )}
+                : (
+                  <></>
+                )}
             </Nav>
 
             <Nav className="ml-auto">

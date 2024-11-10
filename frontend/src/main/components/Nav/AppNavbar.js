@@ -14,8 +14,8 @@ export default function AppNavbar({
     <>
       {(currentUrl.startsWith("http://localhost:3000") ||
         currentUrl.startsWith("http://127.0.0.1:3000")) && (
-          <AppNavbarLocalhost url={currentUrl} />
-        )}
+        <AppNavbarLocalhost url={currentUrl} />
+      )}
       <Navbar
         expand="xl"
         variant="dark"
@@ -58,7 +58,7 @@ export default function AppNavbar({
                   <NavDropdown.Item href="/admin/users">Users</NavDropdown.Item>
                 </NavDropdown>
               )}
-              {currentUser && currentUser.loggedIn ?
+              {currentUser && currentUser.loggedIn ? (
                 <>
                   <Nav.Link as={Link} to="/restaurants">
                     Restaurants
@@ -80,13 +80,12 @@ export default function AppNavbar({
                     Articles
                   </Nav.Link>
                   <Nav.Link as={Link} to="/menuitemreview">
-                    Menu Item Review
-                    main
+                    Menu Item Review main
                   </Nav.Link>
                 </>
-                : (
-                  <></>
-                )}
+              ) : (
+                <></>
+              )}
             </Nav>
 
             <Nav className="ml-auto">

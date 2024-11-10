@@ -5,49 +5,49 @@ import { useBackendMutation } from "main/utils/useBackend";
 import { toast } from "react-toastify";
 
 export default function HelpRequestCreatePage({ storybook = false }) {
-    const objectToAxiosParams = (helpRequest) => ({
-        url: "/api/helprequests/post",
-        method: "POST",
-        params: {
-            requesterEmail: helpRequest.requesterEmail,
-            teamId: helpRequest.teamId,
-            tableOrBreakoutRoom: helpRequest.tableOrBreakoutRoom,
-            requestTime: helpRequest.requestTime,
-            explanation: helpRequest.explanation,
-            solved: helpRequest.solved,
-        },
-    });
+  const objectToAxiosParams = (helpRequest) => ({
+    url: "/api/helprequests/post",
+    method: "POST",
+    params: {
+      requesterEmail: helpRequest.requesterEmail,
+      teamId: helpRequest.teamId,
+      tableOrBreakoutRoom: helpRequest.tableOrBreakoutRoom,
+      requestTime: helpRequest.requestTime,
+      explanation: helpRequest.explanation,
+      solved: helpRequest.solved,
+    },
+  });
 
-    const onSuccess = (helpRequest) => {
-        toast(
-            `New HelpRequest Created - id: ${helpRequest.id} requesterEmail: ${helpRequest.requesterEmail}`,
-        );
-    };
-
-    const mutation = useBackendMutation(
-        objectToAxiosParams,
-        { onSuccess },
-        // Stryker disable next-line all : hard to test for caching
-        ["/api/helprequests/all"],
+  const onSuccess = (helpRequest) => {
+    toast(
+      `New HelpRequest Created - id: ${helpRequest.id} requesterEmail: ${helpRequest.requesterEmail}`,
     );
+  };
 
-    const { isSuccess } = mutation;
+  const mutation = useBackendMutation(
+    objectToAxiosParams,
+    { onSuccess },
+    // Stryker disable next-line all : hard to test for caching
+    ["/api/helprequests/all"],
+  );
 
-    const onSubmit = async (data) => {
-        mutation.mutate(data);
-    };
+  const { isSuccess } = mutation;
 
-    if (isSuccess && !storybook) {
-        return <Navigate to="/helprequests" />;
-    }
+  const onSubmit = async (data) => {
+    mutation.mutate(data);
+  };
 
-    return (
-        <BasicLayout>
-            <div className="pt-2">
-                <h1>Create New HelpRequest</h1>
+  if (isSuccess && !storybook) {
+    return <Navigate to="/helprequests" />;
+  }
 
-                <HelpRequestForm submitAction={onSubmit} />
-            </div>
-        </BasicLayout>
-    );
+  return (
+    <BasicLayout>
+      <div className="pt-2">
+        <h1>Create New HelpRequest</h1>
+
+        <HelpRequestForm submitAction={onSubmit} />
+      </div>
+    </BasicLayout>
+  );
 }

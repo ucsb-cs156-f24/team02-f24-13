@@ -33,7 +33,7 @@ export default function UCSBDiningCommonsMenuItemIndexPage() {
     { method: "GET", url: "/api/ucsbdiningcommonsmenuitem/all" },
     [],
   );
-
+  //
   return (
     <BasicLayout>
       <div className="pt-2">

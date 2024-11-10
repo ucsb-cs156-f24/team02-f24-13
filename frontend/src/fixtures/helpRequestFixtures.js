@@ -1,5 +1,5 @@
 const helpRequestFixtures = {
-  firstRequest: {
+  oneRequest: {
     id: 1,
     requesterEmail: "dude101@gmail.com",
     teamId: "t-13",
@@ -8,7 +8,7 @@ const helpRequestFixtures = {
     explanation: "check frontend",
     solved: false,
   },
-  otherRequests: [
+  threeRequests: [
     {
       id: 1,
       requesterEmail: "bob@gmail.com",

@@ -80,7 +80,11 @@ export default function AppNavbar({
                     Articles
                   </Nav.Link>
                   <Nav.Link as={Link} to="/menuitemreview">
+<<<<<<< HEAD
                     Menu Item Review
+=======
+                    Menu Item Review 
+>>>>>>> ba4840ea155fee029820375132580c23f9d052aa
                   </Nav.Link>
                 </>
               ) : (

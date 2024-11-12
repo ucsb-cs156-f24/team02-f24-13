@@ -126,11 +126,19 @@ describe("HelpRequestEditPage tests", () => {
       await screen.findByTestId("HelpRequestForm-requesterEmail");
 
       const idField = screen.getByTestId("HelpRequestForm-id");
-      const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
+      const requesterEmailField = screen.getByTestId(
+        "HelpRequestForm-requesterEmail",
+      );
       const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
-      const tableOrBreakoutRoomField = screen.getByTestId("HelpRequestForm-tableOrBreakoutRoom");
-      const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
-      const explanationField = screen.getByTestId("HelpRequestForm-explanation");
+      const tableOrBreakoutRoomField = screen.getByTestId(
+        "HelpRequestForm-tableOrBreakoutRoom",
+      );
+      const requestTimeField = screen.getByTestId(
+        "HelpRequestForm-requestTime",
+      );
+      const explanationField = screen.getByTestId(
+        "HelpRequestForm-explanation",
+      );
       const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
       expect(idField).toHaveValue("17");
@@ -154,11 +162,19 @@ describe("HelpRequestEditPage tests", () => {
       await screen.findByTestId("HelpRequestForm-requesterEmail");
 
       const idField = screen.getByTestId("HelpRequestForm-id");
-      const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
+      const requesterEmailField = screen.getByTestId(
+        "HelpRequestForm-requesterEmail",
+      );
       const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
-      const tableOrBreakoutRoomField = screen.getByTestId("HelpRequestForm-tableOrBreakoutRoom");
-      const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
-      const explanationField = screen.getByTestId("HelpRequestForm-explanation");
+      const tableOrBreakoutRoomField = screen.getByTestId(
+        "HelpRequestForm-tableOrBreakoutRoom",
+      );
+      const requestTimeField = screen.getByTestId(
+        "HelpRequestForm-requestTime",
+      );
+      const explanationField = screen.getByTestId(
+        "HelpRequestForm-explanation",
+      );
       const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
       expect(idField).toHaveValue("17");
@@ -170,10 +186,14 @@ describe("HelpRequestEditPage tests", () => {
 
       expect(submitButton).toBeInTheDocument();
 
-      fireEvent.change(requesterEmailField, { target: { value: "emily@gmail.com" } });
+      fireEvent.change(requesterEmailField, {
+        target: { value: "emily@gmail.com" },
+      });
       fireEvent.change(teamIdField, { target: { value: "t-12" } });
       fireEvent.change(tableOrBreakoutRoomField, { target: { value: "8" } });
-      fireEvent.change(requestTimeField, { target: { value: "2024-12-02T12:30" } });
+      fireEvent.change(requestTimeField, {
+        target: { value: "2024-12-02T12:30" },
+      });
       fireEvent.change(explanationField, { target: { value: "got it" } });
 
       fireEvent.click(submitButton);

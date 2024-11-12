@@ -104,7 +104,7 @@ function App() {
           <>
             <Route
               exact
-              path="/ucsbOrganization"
+              path="/ucsborganization"
               element={<UCSBOrganizationIndexPage />}
             />
           </>
@@ -113,12 +113,12 @@ function App() {
           <>
             <Route
               exact
-              path="/ucsbOrganization/edit/:id"
+              path="/ucsborganization/edit/:orgCode"
               element={<UCSBOrganizationEditPage />}
             />
             <Route
               exact
-              path="/ucsbOrganization/create"
+              path="/ucsborganization/create"
               element={<UCSBOrganizationCreatePage />}
             />
           </>

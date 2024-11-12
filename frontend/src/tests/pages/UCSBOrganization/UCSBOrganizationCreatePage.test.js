@@ -54,7 +54,7 @@ describe("UCSBOrganizationCreatePage tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <UCSBOrganizationCreatePage />
+          <UCSBOrganizationCreatePage/>
         </MemoryRouter>
       </QueryClientProvider>,
     );
@@ -67,7 +67,7 @@ describe("UCSBOrganizationCreatePage tests", () => {
   test("on submit, makes request to backend, and redirects to /ucsborganization", async () => {
     const queryClient = new QueryClient();
     const organization = {
-      orgCode: "ZPR",
+      orgCode: "zpr",
       orgTranslationShort: "Zeta Phi",
       orgTranslation: "Zeta Phi Rho",
       inactive: false,
@@ -90,9 +90,7 @@ describe("UCSBOrganizationCreatePage tests", () => {
     const orgCodeInput = screen.getByLabelText("Org Code");
     expect(orgCodeInput).toBeInTheDocument();
 
-    const orgTranslationShortInput = screen.getByLabelText(
-      "Org Translation Short",
-    );
+    const orgTranslationShortInput = screen.getByLabelText("Org Translation Short");
     expect(orgTranslationShortInput).toBeInTheDocument();
 
     const orgTranslationInput = screen.getByLabelText("Org Translation");
@@ -104,7 +102,7 @@ describe("UCSBOrganizationCreatePage tests", () => {
     const createButton = screen.getByText("Create");
     expect(createButton).toBeInTheDocument();
 
-    fireEvent.change(orgCodeInput, { target: { value: "ZPR" } });
+    fireEvent.change(orgCodeInput, { target: { value: "zpr" } });
     fireEvent.change(orgTranslationShortInput, {
       target: { value: "Zeta Phi" },
     });
@@ -117,7 +115,7 @@ describe("UCSBOrganizationCreatePage tests", () => {
     await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
     expect(axiosMock.history.post[0].params).toEqual({
-      orgCode: "ZPR",
+      orgCode: "zpr",
       orgTranslationShort: "Zeta Phi",
       orgTranslation: "Zeta Phi Rho",
       inactive: false,
@@ -125,7 +123,7 @@ describe("UCSBOrganizationCreatePage tests", () => {
 
     // assert - check that the toast was called with the expected message
     expect(mockToast).toHaveBeenCalledWith(
-      "New UCSBOrganization Created - orgCode: ZPR",
+      "New UCSBOrganization Created - Org Code: zpr",
     );
     expect(mockNavigate).toHaveBeenCalledWith({ to: "/ucsborganization" });
   });

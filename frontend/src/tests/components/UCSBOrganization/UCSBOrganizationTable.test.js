@@ -6,7 +6,6 @@ import { MemoryRouter } from "react-router-dom";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
-import UCSBOrganizationTable from "main/components/UCSBOrganization/UCSBOrganizationTable";
 
 const mockedNavigate = jest.fn();
 

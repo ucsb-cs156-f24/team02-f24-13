@@ -18,8 +18,18 @@ jest.mock("react-router-dom", () => ({
 describe("UCSBOrganizationTable tests", () => {
   const queryClient = new QueryClient();
 
-  const expectedHeaders = ["Org Code", "Org Translation Short", "Org Translation", "Inactive"];
-  const expectedFields = ["orgCode", "orgTranslationShort", "orgTranslation", "inactive"];
+  const expectedHeaders = [
+    "Org Code",
+    "Org Translation Short",
+    "Org Translation",
+    "Inactive",
+  ];
+  const expectedFields = [
+    "orgCode",
+    "orgTranslationShort",
+    "orgTranslation",
+    "inactive",
+  ];
   const testId = "UCSBOrganizationTable";
 
   test("renders empty table correctly", () => {
@@ -76,41 +86,50 @@ describe("UCSBOrganizationTable tests", () => {
       expect(header).toBeInTheDocument();
     });
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-orgCode`)).toHaveTextContent(
-      "cdt");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-orgCode`),
+    ).toHaveTextContent("cdt");
     expect(
       screen.getByTestId(`${testId}-cell-row-0-col-orgTranslationShort`),
     ).toHaveTextContent("Chi Delts");
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-orgTranslation`)).toHaveTextContent(
-      "Chi Delta Theta");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-orgTranslation`),
+    ).toHaveTextContent("Chi Delta Theta");
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-inactive`)).toHaveTextContent(
-      "false");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-inactive`),
+    ).toHaveTextContent("false");
 
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-orgCode`)).toHaveTextContent(
-      "zbt");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-1-col-orgCode`),
+    ).toHaveTextContent("zbt");
     expect(
       screen.getByTestId(`${testId}-cell-row-1-col-orgTranslationShort`),
     ).toHaveTextContent("Zeta Beta");
 
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-orgTranslation`)).toHaveTextContent(
-      "Zeta Beta Tau");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-1-col-orgTranslation`),
+    ).toHaveTextContent("Zeta Beta Tau");
 
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-inactive`)).toHaveTextContent(
-      "false");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-1-col-inactive`),
+    ).toHaveTextContent("false");
 
-      expect(screen.getByTestId(`${testId}-cell-row-2-col-orgCode`)).toHaveTextContent(
-        "slb");
-      expect(
-        screen.getByTestId(`${testId}-cell-row-2-col-orgTranslationShort`),
-      ).toHaveTextContent("Sig Lam");
-  
-      expect(screen.getByTestId(`${testId}-cell-row-2-col-orgTranslation`)).toHaveTextContent(
-        "Sigma Lambda Beta");
-  
-      expect(screen.getByTestId(`${testId}-cell-row-2-col-inactive`)).toHaveTextContent(
-        "false");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-2-col-orgCode`),
+    ).toHaveTextContent("slb");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-2-col-orgTranslationShort`),
+    ).toHaveTextContent("Sig Lam");
+
+    expect(
+      screen.getByTestId(`${testId}-cell-row-2-col-orgTranslation`),
+    ).toHaveTextContent("Sigma Lambda Beta");
+
+    expect(
+      screen.getByTestId(`${testId}-cell-row-2-col-inactive`),
+    ).toHaveTextContent("false");
 
     const editButton = screen.getByTestId(
       `${testId}-cell-row-0-col-Edit-button`,
@@ -152,41 +171,50 @@ describe("UCSBOrganizationTable tests", () => {
       expect(header).toBeInTheDocument();
     });
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-orgCode`)).toHaveTextContent(
-      "cdt");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-orgCode`),
+    ).toHaveTextContent("cdt");
     expect(
       screen.getByTestId(`${testId}-cell-row-0-col-orgTranslationShort`),
     ).toHaveTextContent("Chi Delts");
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-orgTranslation`)).toHaveTextContent(
-      "Chi Delta Theta");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-orgTranslation`),
+    ).toHaveTextContent("Chi Delta Theta");
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-inactive`)).toHaveTextContent(
-      "false");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-inactive`),
+    ).toHaveTextContent("false");
 
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-orgCode`)).toHaveTextContent(
-      "zbt");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-1-col-orgCode`),
+    ).toHaveTextContent("zbt");
     expect(
       screen.getByTestId(`${testId}-cell-row-1-col-orgTranslationShort`),
     ).toHaveTextContent("Zeta Beta");
 
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-orgTranslation`)).toHaveTextContent(
-      "Zeta Beta Tau");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-1-col-orgTranslation`),
+    ).toHaveTextContent("Zeta Beta Tau");
 
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-inactive`)).toHaveTextContent(
-      "false");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-1-col-inactive`),
+    ).toHaveTextContent("false");
 
-      expect(screen.getByTestId(`${testId}-cell-row-2-col-orgCode`)).toHaveTextContent(
-        "slb");
-      expect(
-        screen.getByTestId(`${testId}-cell-row-2-col-orgTranslationShort`),
-      ).toHaveTextContent("Sig Lam");
-  
-      expect(screen.getByTestId(`${testId}-cell-row-2-col-orgTranslation`)).toHaveTextContent(
-        "Sigma Lambda Beta");
-  
-      expect(screen.getByTestId(`${testId}-cell-row-2-col-inactive`)).toHaveTextContent(
-        "false");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-2-col-orgCode`),
+    ).toHaveTextContent("slb");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-2-col-orgTranslationShort`),
+    ).toHaveTextContent("Sig Lam");
+
+    expect(
+      screen.getByTestId(`${testId}-cell-row-2-col-orgTranslation`),
+    ).toHaveTextContent("Sigma Lambda Beta");
+
+    expect(
+      screen.getByTestId(`${testId}-cell-row-2-col-inactive`),
+    ).toHaveTextContent("false");
 
     expect(screen.queryByText("Delete")).not.toBeInTheDocument();
     expect(screen.queryByText("Edit")).not.toBeInTheDocument();
@@ -252,17 +280,20 @@ describe("UCSBOrganizationTable tests", () => {
     );
 
     // assert - check that the expected content is rendered
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-orgCode`)).toHaveTextContent(
-      "cdt");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-orgCode`),
+    ).toHaveTextContent("cdt");
     expect(
       screen.getByTestId(`${testId}-cell-row-0-col-orgTranslationShort`),
     ).toHaveTextContent("Chi Delts");
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-orgTranslation`)).toHaveTextContent(
-      "Chi Delta Theta");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-orgTranslation`),
+    ).toHaveTextContent("Chi Delta Theta");
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-inactive`)).toHaveTextContent(
-      "false");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-inactive`),
+    ).toHaveTextContent("false");
 
     const deleteButton = screen.getByTestId(
       `${testId}-cell-row-0-col-Delete-button`,

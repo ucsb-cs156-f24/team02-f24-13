@@ -78,26 +78,3 @@ public class UCSBDiningCommonsMenuItemIT {
                 assertEquals(expectedJson, responseString);
         }
 
-        // @WithMockUser(roles = { "ADMIN", "USER" })
-        // @Test
-        // public void an_admin_user_can_post_a_new_restaurant() throws Exception {
-        //         // arrange
-
-        //         UCSBDiningCommonsMenuItem item1 = UCSBDiningCommonsMenuItem.builder()
-        //                         .id(1L)
-        //                         .name("Chipotle")
-        //                         .description("Mexican")
-        //                         .build();
-
-        //         // act
-        //         MvcResult response = mockMvc.perform(
-        //                         post("/api/restaurants/post?name=Chipotle&description=Mexican")
-        //                                         .with(csrf()))
-        //                         .andExpect(status().isOk()).andReturn();
-
-        //         // assert
-        //         String expectedJson = mapper.writeValueAsString(restaurant1);
-        //         String responseString = response.getResponse().getContentAsString();
-        //         assertEquals(expectedJson, responseString);
-        // }
-}

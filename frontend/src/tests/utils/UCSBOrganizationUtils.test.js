@@ -35,14 +35,14 @@ describe("UCSBOrganizationUtils", () => {
   describe("cellToAxiosParamsDelete", () => {
     test("It returns the correct params", () => {
       // arrange
-      const cell = { row: { values: { id: "cdt" } } };
+      const cell = { row: { values: { orgCode: "cdt" } } };
 
       // act
       const result = cellToAxiosParamsDelete(cell);
 
       // assert
       expect(result).toEqual({
-        url: "/api/ucsbOrganization",
+        url: "/api/ucsborganization",
         method: "DELETE",
         params: { id: "cdt" },
       });

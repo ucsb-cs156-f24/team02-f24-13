@@ -213,6 +213,7 @@ describe("HelpRequestEditPage tests", () => {
           tableOrBreakoutRoom: "8",
           requestTime: "2024-12-02T12:30",
           explanation: "got it",
+          solved: false,
         }),
       ); // posted object
     });

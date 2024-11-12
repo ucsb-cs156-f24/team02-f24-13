@@ -20,4 +20,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-f24/team02-f24-13
 owner: ucsb-cs156-f24
 repo_name: team02-f24-13
-pull_requests: [{"author":{"id":"MDQ6VXNlcjY2ODYwNDEw","is_bot":false,"login":"shivanimadhan","name":"Shivani Madhan"},"headRefName":"shivanimadhan-index-page","number":129,"title":"index page","url":"https://github.com/ucsb-cs156-f24/team02-f24-13/pull/129"},{"author":{"id":"U_kgDOBtxmGw","is_bot":false,"login":"st4lemon","name":""},"headRefName":"dq-team03","number":118,"title":"dq-MenuItemReview integration test","url":"https://github.com/ucsb-cs156-f24/team02-f24-13/pull/118"}]
+pull_requests: [{"author":{"id":"U_kgDOBtxmGw","is_bot":false,"login":"st4lemon","name":""},"headRefName":"dq-team03","number":118,"title":"dq-MenuItemReview integration test","url":"https://github.com/ucsb-cs156-f24/team02-f24-13/pull/118"}]

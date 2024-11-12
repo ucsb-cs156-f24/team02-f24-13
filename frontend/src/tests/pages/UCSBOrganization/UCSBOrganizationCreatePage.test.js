@@ -54,7 +54,7 @@ describe("UCSBOrganizationCreatePage tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <UCSBOrganizationCreatePage/>
+          <UCSBOrganizationCreatePage />
         </MemoryRouter>
       </QueryClientProvider>,
     );
@@ -90,7 +90,9 @@ describe("UCSBOrganizationCreatePage tests", () => {
     const orgCodeInput = screen.getByLabelText("Org Code");
     expect(orgCodeInput).toBeInTheDocument();
 
-    const orgTranslationShortInput = screen.getByLabelText("Org Translation Short");
+    const orgTranslationShortInput = screen.getByLabelText(
+      "Org Translation Short",
+    );
     expect(orgTranslationShortInput).toBeInTheDocument();
 
     const orgTranslationInput = screen.getByLabelText("Org Translation");

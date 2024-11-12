@@ -48,7 +48,9 @@ describe("UCSBOrganizationEditPage tests", () => {
       axiosMock
         .onGet("/api/systemInfo")
         .reply(200, systemInfoFixtures.showingNeither);
-      axiosMock.onGet("/api/ucsborganization", { params: { orgCode: "cdt" } }).timeout();
+      axiosMock
+        .onGet("/api/ucsborganization", { params: { orgCode: "cdt" } })
+        .timeout();
     });
 
     const queryClient = new QueryClient();
@@ -63,7 +65,9 @@ describe("UCSBOrganizationEditPage tests", () => {
         </QueryClientProvider>,
       );
       await screen.findByText("Edit Organization");
-      expect(screen.queryByTestId("UCSBOrganization-orgCode")).not.toBeInTheDocument();
+      expect(
+        screen.queryByTestId("UCSBOrganization-orgCode"),
+      ).not.toBeInTheDocument();
       restoreConsole();
     });
   });
@@ -80,12 +84,14 @@ describe("UCSBOrganizationEditPage tests", () => {
       axiosMock
         .onGet("/api/systemInfo")
         .reply(200, systemInfoFixtures.showingNeither);
-      axiosMock.onGet("/api/ucsborganization", { params: { orgCode: "cdt" } }).reply(200, {
-        orgCode: "cdt",
-        orgTranslationShort: "Chi Delts",
-        orgTranslation: "Chi Delta Theta",
-        inactive: "false",
-      });
+      axiosMock
+        .onGet("/api/ucsborganization", { params: { orgCode: "cdt" } })
+        .reply(200, {
+          orgCode: "cdt",
+          orgTranslationShort: "Chi Delts",
+          orgTranslation: "Chi Delta Theta",
+          inactive: "false",
+        });
       axiosMock.onPut("/api/ucsborganization").reply(200, {
         orgCode: "cdt",
         orgTranslationShort: "Chi Delts",
@@ -114,16 +120,14 @@ describe("UCSBOrganizationEditPage tests", () => {
       const orgTranslationField = screen.getByTestId(
         "UCSBOrganizationForm-orgTranslation",
       );
-      const inactiveField = screen.getByTestId(
-        "UCSBOrganizationForm-inactive",
-      );
+      const inactiveField = screen.getByTestId("UCSBOrganizationForm-inactive");
       const submitButton = screen.getByTestId("UCSBOrganizationForm-submit");
 
       expect(orgCodeField).toBeInTheDocument();
       expect(orgCodeField).toHaveValue("cdt");
       expect(orgTranslationShortField).toBeInTheDocument();
       expect(orgTranslationShortField).toHaveValue("Chi Delts");
-      expect(orgTranslationShort).toBeInTheDocument();
+      expect(orgTranslationField).toBeInTheDocument();
       expect(orgTranslationField).toHaveValue("Chi Delta Theta");
       expect(inactiveField).toBeInTheDocument();
       expect(submitButton).toHaveTextContent("Update");
@@ -173,9 +177,7 @@ describe("UCSBOrganizationEditPage tests", () => {
       const orgTranslationField = screen.getByTestId(
         "UCSBOrganizationForm-orgTranslation",
       );
-      const inactiveField = screen.getByTestId(
-        "UCSBOrganizationForm-inactive",
-      );
+      const inactiveField = screen.getByTestId("UCSBOrganizationForm-inactive");
       const submitButton = screen.getByTestId("UCSBOrganizationForm-submit");
 
       expect(orgCodeField).toHaveValue("cdt");

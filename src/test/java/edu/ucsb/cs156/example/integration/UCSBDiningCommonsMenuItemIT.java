@@ -77,4 +77,4 @@ public class UCSBDiningCommonsMenuItemIT {
                 String responseString = response.getResponse().getContentAsString();
                 assertEquals(expectedJson, responseString);
         }
-
+}

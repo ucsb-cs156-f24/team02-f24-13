@@ -196,6 +196,14 @@ describe("UserTable tests", () => {
       </QueryClientProvider>,
     );
 
+    expect(screen.getByText("Solved")).toBeInTheDocument();
+    expect(
+      screen.getByTestId("HelpRequestTable-cell-row-0-col-Solved"),
+    ).toHaveTextContent("false");
+    expect(
+      screen.getByTestId("HelpRequestTable-cell-row-1-col-Solved"),
+    ).toHaveTextContent("true");
+
     // assert - check that the expected content is rendered
 
     await waitFor(() => {

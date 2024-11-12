@@ -44,7 +44,7 @@ describe("UCSBOrganizationUtils", () => {
       expect(result).toEqual({
         url: "/api/ucsborganization",
         method: "DELETE",
-        params: { id: "cdt" },
+        params: { orgCode: "cdt" },
       });
     });
   });

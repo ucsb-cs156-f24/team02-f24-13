@@ -196,6 +196,6 @@ describe("UCSBOrganizationIndexPage tests", () => {
     });
     expect(axiosMock.history.delete[0].url).toBe("/api/ucsborganization");
     expect(axiosMock.history.delete[0].url).toBe("/api/ucsborganization");
-    expect(axiosMock.history.delete[0].params).toEqual({ id: "cdt" });
+    expect(axiosMock.history.delete[0].params).toEqual({ orgCode: "cdt" });
   });
 });

@@ -47,7 +47,7 @@ describe("UserTable tests", () => {
       "tableOrBreakoutRoom",
       "requestTime",
       "explanation",
-      "solved",
+      "Solved",
     ];
     const testId = "HelpRequestTable";
 
@@ -109,7 +109,7 @@ describe("UserTable tests", () => {
       "tableOrBreakoutRoom",
       "requestTime",
       "explanation",
-      "solved",
+      "Solved",
     ];
     const testId = "HelpRequestTable";
 

@@ -195,7 +195,7 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase
                                 .build();
 
                 UCSBOrganization zprEdited = UCSBOrganization.builder()
-                                .orgCode("zp")
+                                .orgCode("zpr")
                                 .orgTranslationShort("Zeta Phi")
                                 .orgTranslation("UCSB Zeta Phi Rho")
                                 .inactive(true)
@@ -223,7 +223,7 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase
 
         @WithMockUser(roles = { "ADMIN", "USER" })
         @Test
-        public void admin_cannot_edit_commons_that_does_not_exist() throws Exception {
+        public void admin_cannot_edit_organization_that_does_not_exist() throws Exception {
                 UCSBOrganization editedOrg = UCSBOrganization.builder()
                                 .orgCode("cdt")
                                 .orgTranslationShort("Chi Delts")

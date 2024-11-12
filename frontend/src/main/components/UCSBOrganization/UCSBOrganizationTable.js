@@ -31,8 +31,8 @@ export default function UCSBOrganizationTable({
 
   // Stryker disable next-line all : TODO try to make a good test for this
   const deleteCallback = async (cell) => {
-    const orgId = cell.row.values.orgCode; // or the correct identifier
-    deleteMutation.mutate({id: orgId});
+    // const orgId = cell.row.values.orgCode; // or the correct identifier
+    deleteMutation.mutate(cell);
   };
 
   const columns = [
@@ -51,10 +51,11 @@ export default function UCSBOrganizationTable({
     },
     {
       Header: "Inactive",
-      accessor: (organizations) => organizations.inactive.toString(),
+      accessor: "inactive",
+      Organizations: ({organizations}) => organizations.row.original.inactive.toString(),
     }
   ];
-
+  // (organizations) => organizations.inactive.toString(),
   if (hasRole(currentUser, "ROLE_ADMIN")) {
     columns.push(ButtonColumn("Edit", "primary", editCallback, testIdPrefix));
     columns.push(

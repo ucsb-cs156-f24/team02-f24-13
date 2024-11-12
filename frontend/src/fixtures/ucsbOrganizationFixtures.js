@@ -4,7 +4,7 @@ const ucsbOrganizationFixtures = {
       orgCode: "zpr",
       orgTranslationShort: "Zeta Phi",
       orgTranslation: "Zeta Phi Rho",
-      inactive: false,
+      inactive: "false",
     },
   ],
 
@@ -13,21 +13,21 @@ const ucsbOrganizationFixtures = {
       orgCode: "cdt",
       orgTranslationShort: "Chi Delts",
       orgTranslation: "Chi Delta Theta",
-      inactive: false,
+      inactive: "false",
     },
 
     {
       orgCode: "zbt",
       orgTranslationShort: "Zeta Beta",
       orgTranslation: "Zeta Beta Tau",
-      inactive: false,
+      inactive: "false",
     },
 
     {
       orgCode: "slb",
       orgTranslationShort: "Sig Lam",
       orgTranslation: "Sigma Lambda Beta",
-      inactive: false,
+      inactive: "false",
     },
   ],
 };

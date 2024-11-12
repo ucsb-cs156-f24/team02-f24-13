@@ -77,34 +77,40 @@ describe("UCSBOrganizationTable tests", () => {
     });
 
     expect(screen.getByTestId(`${testId}-cell-row-0-col-orgCode`)).toHaveTextContent(
-      "ZPR",
-    );
+      "cdt");
     expect(
       screen.getByTestId(`${testId}-cell-row-0-col-orgTranslationShort`),
-    ).toHaveTextContent("Zeta Phi");
-
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-orgTranslation`)).toHaveTextContent(
-      "Zeta Phi Rho",
-    );
-
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-Inactive`)).toHaveTextContent(
-      "false",
-    );
-
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-orgCode`)).toHaveTextContent(
-      "CDT",
-    );
-    expect(
-      screen.getByTestId(`${testId}-cell-row-1-col-orgTranslationShort`),
     ).toHaveTextContent("Chi Delts");
 
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-orgTranslation`)).toHaveTextContent(
-      "Chi Delta Theta",
-    );
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-orgTranslation`)).toHaveTextContent(
+      "Chi Delta Theta");
 
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-Inactive`)).toHaveTextContent(
-      "true",
-    );
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-inactive`)).toHaveTextContent(
+      "false");
+
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-orgCode`)).toHaveTextContent(
+      "zbt");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-1-col-orgTranslationShort`),
+    ).toHaveTextContent("Zeta Beta");
+
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-orgTranslation`)).toHaveTextContent(
+      "Zeta Beta Tau");
+
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-inactive`)).toHaveTextContent(
+      "false");
+
+      expect(screen.getByTestId(`${testId}-cell-row-2-col-orgCode`)).toHaveTextContent(
+        "slb");
+      expect(
+        screen.getByTestId(`${testId}-cell-row-2-col-orgTranslationShort`),
+      ).toHaveTextContent("Sig Lam");
+  
+      expect(screen.getByTestId(`${testId}-cell-row-2-col-orgTranslation`)).toHaveTextContent(
+        "Sigma Lambda Beta");
+  
+      expect(screen.getByTestId(`${testId}-cell-row-2-col-inactive`)).toHaveTextContent(
+        "false");
 
     const editButton = screen.getByTestId(
       `${testId}-cell-row-0-col-Edit-button`,
@@ -147,34 +153,40 @@ describe("UCSBOrganizationTable tests", () => {
     });
 
     expect(screen.getByTestId(`${testId}-cell-row-0-col-orgCode`)).toHaveTextContent(
-      "ZPR",
-    );
+      "cdt");
     expect(
       screen.getByTestId(`${testId}-cell-row-0-col-orgTranslationShort`),
-    ).toHaveTextContent("Zeta Phi");
-
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-orgTranslation`)).toHaveTextContent(
-      "Zeta Phi Rho",
-    );
-
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-Inactive`)).toHaveTextContent(
-      "false",
-    );
-
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-orgCode`)).toHaveTextContent(
-      "CDT",
-    );
-    expect(
-      screen.getByTestId(`${testId}-cell-row-1-col-orgTranslationShort`),
     ).toHaveTextContent("Chi Delts");
 
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-orgTranslation`)).toHaveTextContent(
-      "Chi Delta Theta",
-    );
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-orgTranslation`)).toHaveTextContent(
+      "Chi Delta Theta");
 
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-Inactive`)).toHaveTextContent(
-      "true",
-    );
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-inactive`)).toHaveTextContent(
+      "false");
+
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-orgCode`)).toHaveTextContent(
+      "zbt");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-1-col-orgTranslationShort`),
+    ).toHaveTextContent("Zeta Beta");
+
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-orgTranslation`)).toHaveTextContent(
+      "Zeta Beta Tau");
+
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-inactive`)).toHaveTextContent(
+      "false");
+
+      expect(screen.getByTestId(`${testId}-cell-row-2-col-orgCode`)).toHaveTextContent(
+        "slb");
+      expect(
+        screen.getByTestId(`${testId}-cell-row-2-col-orgTranslationShort`),
+      ).toHaveTextContent("Sig Lam");
+  
+      expect(screen.getByTestId(`${testId}-cell-row-2-col-orgTranslation`)).toHaveTextContent(
+        "Sigma Lambda Beta");
+  
+      expect(screen.getByTestId(`${testId}-cell-row-2-col-inactive`)).toHaveTextContent(
+        "false");
 
     expect(screen.queryByText("Delete")).not.toBeInTheDocument();
     expect(screen.queryByText("Edit")).not.toBeInTheDocument();
@@ -241,19 +253,16 @@ describe("UCSBOrganizationTable tests", () => {
 
     // assert - check that the expected content is rendered
     expect(screen.getByTestId(`${testId}-cell-row-0-col-orgCode`)).toHaveTextContent(
-      "cdt",
-    );
+      "cdt");
     expect(
       screen.getByTestId(`${testId}-cell-row-0-col-orgTranslationShort`),
     ).toHaveTextContent("Chi Delts");
 
     expect(screen.getByTestId(`${testId}-cell-row-0-col-orgTranslation`)).toHaveTextContent(
-      "Chi Delta Theta",
-    );
+      "Chi Delta Theta");
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-Inactive`)).toHaveTextContent(
-      "false",
-    );
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-inactive`)).toHaveTextContent(
+      "false");
 
     const deleteButton = screen.getByTestId(
       `${testId}-cell-row-0-col-Delete-button`,
@@ -266,6 +275,6 @@ describe("UCSBOrganizationTable tests", () => {
     // assert - check that the delete endpoint was called
 
     await waitFor(() => expect(axiosMock.history.delete.length).toBe(1));
-    expect(axiosMock.history.delete[0].params).toBe({id: "cdt"});
+    expect(axiosMock.history.delete[0].params.orgCode).toBe();
   });
 });

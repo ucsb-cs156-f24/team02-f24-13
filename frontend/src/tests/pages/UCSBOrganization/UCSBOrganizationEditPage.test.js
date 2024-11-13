@@ -183,7 +183,7 @@ describe("UCSBOrganizationEditPage tests", () => {
       expect(orgCodeField).toHaveValue("cdt");
       expect(orgTranslationShortField).toHaveValue("Chi Delts");
       expect(orgTranslationField).toHaveValue("Chi Delta Theta");
-      // expect(inactiveField).toHaveValue("false");
+      //expect(inactiveField).toHaveValue("false");
 
       expect(submitButton).toBeInTheDocument();
 

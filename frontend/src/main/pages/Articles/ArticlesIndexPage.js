@@ -25,7 +25,7 @@ export default function ArticlesIndexPage() {
   };
 
   const {
-    data: articles, // Rename from `dates` to `articles`
+    data: articles,
     error: _error,
     status: _status,
   } = useBackend(

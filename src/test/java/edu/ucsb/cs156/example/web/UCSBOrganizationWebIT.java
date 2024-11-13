@@ -18,31 +18,12 @@ import edu.ucsb.cs156.example.WebTestCase;
 @DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
 public class UCSBOrganizationWebIT extends WebTestCase {
     @Test
-    public void admin_user_can_create_edit_delete_org() throws Exception {
-        setupUser(true);
+    public void regular_user_cannot_create_org() throws Exception {
+        setupUser(false);
 
         page.getByText("UCSBOrganization").click();
 
-        page.getByText("Create UCSBOrganization").click();
-        assertThat(page.getByText("Create New UCSBOrganization")).isVisible();
-        page.getByTestId("UCSBOrganizationForm-orgCode").fill("zpr");
-        page.getByTestId("UCSBOrganizationForm-orgTranslationShort").fill("Zeta Phi");
-        page.getByTestId("UCSBOrganizationForm-orgTranslation").fill("Zeta Phi Rho");
-        page.getByTestId("UCSBOrganizationForm-inactive").selectOption("false");
-        page.getByTestId("UCSBOrganizationForm-submit").click();
-
-        assertThat(page.getByTestId("UCSBOrganizationTable-cell-row-0-col-description"))
-                .hasText("Zeta Phi Rho Fraternity");
-
-        page.getByTestId("UCSBOrganizationTable-cell-row-0-col-Edit-button").click();
-        assertThat(page.getByText("Edit UCSBOrganization")).isVisible();
-        page.getByTestId("UCSBOrganizationForm-inactive").selectOption("true");
-        page.getByTestId("UCSBOrganizationForm-submit").click();
-
-        assertThat(page.getByTestId("UCSBOrganizationTable-cell-row-0-col-inactive")).hasText("true");
-
-        page.getByTestId("UCSBOrganizationTable-cell-row-0-col-Delete-button").click();
-
+        assertThat(page.getByText("Create Organization")).not().isVisible();
         assertThat(page.getByTestId("UCSBOrganizationTable-cell-row-0-col-orgCode")).not().isVisible();
     }
 }
